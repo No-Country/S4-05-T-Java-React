@@ -1,0 +1,18 @@
+
+.chat {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 4rem);
+    background-color: $almostWhite;
+
+    &__msjs {
+        height: calc(100vh - 4rem - 3rem);
+        overflow: scroll;
+    }
+
+    &__div{
+        display: flex;
+        flex-direction: column;
+    }
+}

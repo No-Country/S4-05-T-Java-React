@@ -1,16 +1,19 @@
 import './styles/App.scss';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Header } from './components/Header';
+import Chat from './components/Chat';
 
 function App() {
     return (
       <BrowserRouter>
-        <div className="App">          
+        <div className="App"> 
+            <Header />
+
             <Routes>
-              <Route path="/" element={ <Header />} />
+              <Route path="/" element={""} />
               <Route path="/registration" element={""} />
               <Route path="/home" element={""} />
-              <Route path="/chat:id" element={""} />
+              <Route path="/chat:id" element={<Chat />}/>
               <Route path="/perfil:id" element={""} />
               <Route path="/config" element={""} />
               <Route path="/selectContact" element={""} />

@@ -1,0 +1,100 @@
+.configHeader {
+
+    display: flex;
+    align-items: center;
+    color: $almostWhite;
+    background-color: $purple;
+
+    @include media-up("tablet") {
+        height: 5rem;
+        padding-left: 3rem;
+    }
+
+}
+
+.configLink {
+    display: flex;
+    text-decoration: none;
+    color: $black;
+    width: 100%;
+
+    @include media-up("tablet") {
+        align-items: center;
+        border-bottom: solid;
+        border-width: 1px;
+        border-color: $lightGrey;
+    }
+}
+
+.configUserImg {
+
+    @include media-up("tablet") {
+        margin: 1rem;
+        height: 4rem;
+        border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+    }
+}
+
+.configUser {
+
+    @include media-up("tablet") {
+        display: inline;
+        flex-direction: column;
+        justify-content: flex-start;
+        text-align: start;
+
+
+        h4 {
+            margin: 2rem 0 0 0;
+        }
+
+        p {
+            margin: 0.5rem 0 2rem 0;
+            color: $mediumGrey;
+        }
+    }
+
+}
+
+.configDiv {
+    
+    @include media-up("tablet") {
+    display: flex;
+    margin: 1rem 2rem;
+    }
+}
+
+.configMode {
+
+
+    @include media-up("tablet") {
+        text-align: start;
+        margin-left: 1rem;
+
+        h4 {
+            margin: 0;
+        }
+
+        p {
+            margin: 0;
+            color: $mediumGrey;
+        }
+    }
+}
+.configLang {
+
+
+    @include media-up("tablet") {
+        text-align: start;
+        margin-left: 1rem;
+
+        h4 {
+            margin: 0;
+        }
+
+        p {
+            margin: 0;
+            color: $mediumGrey;
+        }
+    }
+}

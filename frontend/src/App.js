@@ -1,6 +1,8 @@
 import './styles/App.scss';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Header } from './components/Header';
+import Perfil from './components/Perfil';
+import Config from './components/Config';
 
 function App() {
     return (
@@ -11,8 +13,8 @@ function App() {
               <Route path="/registration" element={""} />
               <Route path="/home" element={""} />
               <Route path="/chat:id" element={""} />
-              <Route path="/perfil:id" element={""} />
-              <Route path="/config" element={""} />
+              <Route path="/perfil:id" element={ <Perfil /> } />
+              <Route path="/config" element={ <Config /> } />
               <Route path="/selectContact" element={""} />
               <Route path="/contacts" element={""} />
               <Route path="/newGroup" element={""} />

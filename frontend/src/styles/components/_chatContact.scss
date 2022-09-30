@@ -1,0 +1,39 @@
+    .Chat-contact {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        display: flex;
+        h4,
+        h5 {
+            margin: 0;
+        }
+        h4 {
+            font-weight: 500;
+        }
+        h5 {
+            font-weight: 400;
+            margin-top: 0.5rem;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        &__logo,
+        &__time {
+            width: 3.5rem;
+        }
+        &__data {
+            width: calc(100% - 7rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+            padding: 0rem 0.75rem
+        }
+        &__logo {
+            img {
+                width: 3.5rem;
+                height: 3.5rem;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+    }

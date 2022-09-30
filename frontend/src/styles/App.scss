@@ -1,7 +1,9 @@
 @import './config/variables';
-
 @import './components/header';
-
+@import './components/headerBack';
+@import './components/buttonChat';
+@import './components/chatContact';
+@import './components/home';
 .App {
-  text-align: center;
+    text-align: center;
 }

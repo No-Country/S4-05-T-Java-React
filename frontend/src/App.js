@@ -1,13 +1,14 @@
 import './styles/App.scss';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { Header } from './components/Header';
+import { Home } from './components/Home';
+import { Test } from './components/Test';
 
 function App() {
     return (
       <BrowserRouter>
         <div className="App">          
             <Routes>
-              <Route path="/" element={ <Header />} />
+              <Route path="/" element={ <Home />} />
               <Route path="/registration" element={""} />
               <Route path="/home" element={""} />
               <Route path="/chat:id" element={""} />
@@ -17,7 +18,7 @@ function App() {
               <Route path="/contacts" element={""} />
               <Route path="/newGroup" element={""} />
               <Route path="/addContact" element={""} />
-              <Route path="/" element={""} />
+              <Route path="/test" element={<Test/>} />
             </Routes>
         </div>
       </BrowserRouter>

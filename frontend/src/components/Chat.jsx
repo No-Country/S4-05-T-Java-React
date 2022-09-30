@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import { useContext } from "react";
+import { useEffect } from "react";
+import ChatContext from "../contexts/ChatContext";
 import InputChat from "./InputChat";
 import ReciveMsj from "./ReciveMsj";
 import SendMsj from "./SendMsj";
 
 function Chat() {
+
+    // const {chatLog, getChatLog} = useContext(ChatContext)
 
     const [userID, setUserID] = useState("Leonardo")
 
@@ -12,59 +17,68 @@ function Chat() {
     const [chatLog, setChatLog] = useState([
         {
             timestamp: 0,
-            id: "user-Leonardo",
+            sender: "Leonardo",
             msj: "asñldfsld asdlñf sdlf sd sdkf sdlñ k slsj lñsdfsd lfsad fasdf ñsldfk sadñlfjas dlñfjasd flñasjdf ñlasdlñs",
             first: true
         },
         {
             timestamp: 1,
-            id: "user-Pablo",
+            sender: "Pablo",
             msj: "asñldfsld asdlñf sdlf sd sdkf sdlñ k slsj lñsdfsd lfsad fasdf ñsldfk sadñlfjas dlñfjasd flñasjdf ñlasdlñs",
             first: true
         },
         {
             timestamp: 2,
-            id: "user-Leonardo",
+            sender: "Leonardo",
             msj: "asñldfsld asdlñf sdlf sd sdkf sdlñ k slsj lñsdfsd lfsad fasdf ñsldfk sadñlfjas dlñfjasd flñasjdf ñlasdlñs",
             first: true
         },
         {
             timestamp: 3,
-            id: "user-Leonardo",
+            sender: "Leonardo",
             msj: "asñldfsld asdlñf sdlf sd sdkf sdlñ k slsj lñsdfsd lfsad fasdf ñsldfk sadñlfjas dlñfjasd flñasjdf ñlasdlñs",
             first: true
         },
         {
             timestamp: 4,
-            id: "user-Pablo",
+            sender: "Pablo",
             msj: "asñldfsld asdlñf sdlf sd sdkf sdlñ k slsj lñsdfsd lfsad fasdf ñsldfk sadñlfjas dlñfjasd flñasjdf ñlasdlñs",
             first: true
         },
         {
             timestamp: 5,
-            id: "user-Leonardo",
+            sender: "Leonardo",
             msj: "asñldfsld asdlñf sdlf sd sdkf sdlñ k slsj lñsdfsd lfsad fasdf ñsldfk sadñlfjas dlñfjasd flñasjdf ñlasdlñs",
             first: true
         },
         {
             timestamp: 6,
-            id: "user-Pablo",
+            sender: "Pablo",
             msj: "asñldfsld asdlñf sdlf sd sdkf sdlñ k slsj lñsdfsd lfsad fasdf ñsldfk sadñlfjas dlñfjasd flñasjdf ñlasdlñs",
             first: true
         },
         {
             timestamp: 7,
-            id: "user-Pablo",
+            sender: "Pablo",
             msj: "asñldfsld asdlñf sdlf sd sdkf sdlñ k slsj lñsdfsd lfsad fasdf ñsldfk sadñlfjas dlñfjasd flñasjdf ñlasdlñs",
             first: true
         },
         {
             timestamp: 8,
-            id: "user-Pablo",
+            sender: "Pablo",
             msj: "asñldfsld asdlñf sdlf sd sdkf sdlñ k slsj lñsdfsd lfsad fasdf ñsldfk sadñlfjas dlñfjasd flñasjdf ñlasdlñs",
             first: true
         },
-    ])
+    ])    
+
+    // useEffect(() => {
+        
+    
+    //     return () => {
+    //         second
+    //     }
+    // }, [third])
+    
 
     let prev = ""
     let auxLog
@@ -73,14 +87,19 @@ function Chat() {
     console.log(chatLog.length);
 
     for(let i = 0; i < chatLog.length; i++){
-        auxLog = chatLog
-        console.log(i, prev, auxLog[i].id.split("-")[1]);
-        if(prev === auxLog[i].id.split("-")[1]){
+        auxLog = chatLog.sort(((a, b) => b.timestamp - a.timestamp))
+        console.log(i, prev, auxLog[i].sender);
+        if(prev === ""){
+            prev = auxLog[i].sender
+            continue
+        }
+
+        if(prev === auxLog[i].sender){
             console.log(false);
-            auxLog[i].first = false
+            auxLog[i-1].first = false
         }
         
-        prev = auxLog[i].id.split("-")[1]
+        prev = auxLog[i].sender
         
     }
 
@@ -98,18 +117,16 @@ function Chat() {
                 {chatLog.map((m) => {
                     return(
                         <div className="chat__div">
-                            {m.id === "user-" + userID
+                            {m.sender === userID
                             ?
                                 <SendMsj
                                     msj = {m.msj}
                                     time = {m.timestamp}
                                     first = {m.first}
-                                />
-                    
+                                />                    
                             :
-
                                 <ReciveMsj 
-                                    id = {m.id}
+                                    sender = {m.sender}
                                     msj = {m.msj}
                                     time = {m.timestamp}
                                     first = {m.first}

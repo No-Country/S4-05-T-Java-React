@@ -1,12 +1,13 @@
 
 .reciveMsj {
     display: flex;
-    max-width: 85%;
+    width: 85%;
     align-self: flex-start;
 
     &__main {
         display: flex;
         flex-direction: column;
+        width: 95%;
         border-radius: 0.5rem;
         background-color: white;
         z-index: 3;
@@ -30,10 +31,11 @@
     }
 
     &__arrow {
-        width: 3rem;
-        height: 1.2rem;
-        margin-top: 0.5rem;
-        transform-origin: right top;
-        transform: rotate(-45deg);
+        width: 25px;
+        max-width: 25px;
+        height: 20px;
+        position: relative;
+        left: 5px;
+        margin-left: 0.5rem;
     }
 }

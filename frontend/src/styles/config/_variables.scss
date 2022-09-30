@@ -18,7 +18,7 @@ $breakpoints: (
 );
 
 @mixin media-up($breakpoint) {
-    @media screen and (min-width: map-get($breakpoints, $breakpoint)) {
+    @media screen and (max-width: map-get($breakpoints, $breakpoint)) {
         @content;
     }
 }

@@ -1,6 +1,10 @@
 import './styles/App.scss';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Home } from './components/Home';
+import { Test } from './components/Test';
 import { Header } from './components/Header';
+import Perfil from './components/Perfil';
+import Config from './components/Config';
 import Chat from './components/Chat';
 
 function App() {
@@ -10,17 +14,17 @@ function App() {
             <Header />
 
             <Routes>
-              <Route path="/" element={""} />
+              <Route path="/" element={ <Home />} />
               <Route path="/registration" element={""} />
               <Route path="/home" element={""} />
-              <Route path="/chat:id" element={<Chat />}/>
-              <Route path="/perfil:id" element={""} />
-              <Route path="/config" element={""} />
+              <Route path="/chat:id" element={<Chat />} />
+              <Route path="/perfil:id" element={ <Perfil /> } />
+              <Route path="/config" element={ <Config /> } />
               <Route path="/selectContact" element={""} />
               <Route path="/contacts" element={""} />
               <Route path="/newGroup" element={""} />
               <Route path="/addContact" element={""} />
-              <Route path="/" element={""} />
+              <Route path="/test" element={<Test/>} />
             </Routes>
         </div>
       </BrowserRouter>

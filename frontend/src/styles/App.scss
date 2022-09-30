@@ -1,11 +1,16 @@
 @import './config/variables';
-
 @import './components/header';
+@import './components/headerBack';
+@import './components/buttonChat';
+@import './components/chatContact';
+@import './components/home';
+@import './components/perfil';
+@import './components/config';
 @import './components/chat';
 @import './components/reciveMsj';
 @import './components/sendMsj';
 @import './components/inputChat';
 
 .App {
-  
+    text-align: center;
 }

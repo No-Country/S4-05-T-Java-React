@@ -1,0 +1,41 @@
+
+.sendMsj {
+    display: flex;
+    width: 85%;
+    align-self: flex-end;   
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+        border-radius: 0.5rem;
+        background-color: $mediumPurple; 
+        z-index: 3;
+    }
+
+    &__name {
+        margin: 0.2rem 0.5rem;
+    }
+
+    &__msj {
+        margin: 0.5rem 0.8rem 0.3rem 0.8rem;
+        margin-bottom: 0;
+    }
+
+    &__time {
+        color: gray;
+        height: 1rem;
+        font-size: 0.8rem;
+        align-self: flex-end;
+        margin: 0 0.5rem 0.2rem 0;
+    }
+
+    &__arrow {
+        width: 25px;
+        max-width: 25px;
+        height: 20px;
+        position: relative;
+        right: 5px;
+        margin-right: 0.5rem;
+    }
+}

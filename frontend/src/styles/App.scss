@@ -1,13 +1,15 @@
 @import './config/variables';
-
 @import './components/header';
+@import './components/headerBack';
+@import './components/buttonChat';
+@import './components/chatContact';
+@import './components/home';
+@import './components/perfil';
+@import './components/config';
 
 @import './components/login';
 
-.App {
-  text-align: center;
-}
-
 *{
   box-sizing: border-box;
+  text-align: center;
 }

@@ -1,0 +1,90 @@
+.perfilHeader {
+
+    display: flex;
+    align-items: center;
+    color: $almostWhite;
+    background-color: $purple;
+
+    @include media-up("tablet")  {
+        height: 5rem;
+        padding-left: 3rem;
+    }
+
+}
+
+.perfilBody {
+    display: flex;
+
+
+    @include media-up("tablet") {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.perfilUserImgCont {
+    display: flex;
+}
+.perfilUserImg {
+
+    @include media-up("tablet") {
+        margin-top: 2rem;
+        height: 10rem;
+        border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+    }
+
+}
+
+.perfilBtnImg {
+    z-index: 1;
+    position: absolute;
+    margin-top: 10rem;
+    margin-left: 7rem;
+}
+
+.perfilForm {
+    display: flex;
+    width: 65%;
+
+
+    @include media-up("tablet") {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 1.5rem 0;
+    }
+}
+
+.perfilFormInput {
+    
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-width: 1px;
+    border-color: $lightGrey;
+
+    @include media-up("tablet") {
+        margin: 1.1rem 0;
+        width: 100%;
+    }
+}
+
+.perfilBtnSave {
+    background-color: white;
+    border-radius: 2.5rem;
+    border-width: 2px;
+    height: 2.5rem;
+    font-weight: 500;
+    
+    @include media-up("tablet") {
+        margin: 1.3rem 0;
+        width: 100%;
+    }
+
+    &:hover {
+        background-color: $black;
+        color: white;
+    }
+
+}

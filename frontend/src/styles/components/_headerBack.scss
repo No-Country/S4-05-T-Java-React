@@ -1,0 +1,27 @@
+.header-back {
+    background-color: $purple;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    color: $almostWhite;
+    padding: 0rem 1rem;
+    img {
+        margin-right: 0.8rem;
+        cursor: pointer;
+        transition: 0.3s all ease-in;
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+    &__data {
+        text-align: left;
+        h3,
+        h4 {
+            margin: 0;
+        }
+        h4 {
+            font-weight: 300;
+            margin-top: 0.2rem;
+        }
+    }
+}

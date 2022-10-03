@@ -4,7 +4,7 @@ import { createContext } from "react";
 
 export const ChatContext = createContext()
 
-function ChatPrivider({children}) {
+function ChatProvider({children}) {
 
     const [chatLog, setCahtlog] = useState([])
 

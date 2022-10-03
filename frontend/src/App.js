@@ -2,7 +2,6 @@ import './styles/App.scss';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Home } from './components/Home';
 import { Test } from './components/Test';
-import { Header } from './components/Header';
 import Perfil from './components/Perfil';
 import Config from './components/Config';
 import Chat from './components/Chat';
@@ -10,9 +9,7 @@ import Chat from './components/Chat';
 function App() {
     return (
       <BrowserRouter>
-        <div className="App"> 
-            <Header />
-
+        <div className="App">
             <Routes>
               <Route path="/" element={ <Home />} />
               <Route path="/registration" element={""} />

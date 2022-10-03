@@ -12,9 +12,9 @@
         text-align:start;
         width: 90%;
         padding: 10px 0 10px 0;
-        color:#242424;
+        color: $black;
         margin:0 auto;  
-        max-width: 450px;
+        max-width: 360px;
     }
 }
 
@@ -34,9 +34,9 @@
         text-transform: uppercase;
         text-align:start;
         width: 90%;
-        color:#8497FE;
+        color:$purple;
         margin:0 auto;  
-        max-width: 450px;
+        max-width: 360px;
      }
 }
 
@@ -52,7 +52,7 @@
     display: flex;
     flex-direction: column;
     width: 90%;
-    max-width: 450px;
+    max-width: 360px;
     margin: 0 auto;
 }
 
@@ -106,6 +106,19 @@
     transform: translateX(0%);
 }
 
+.eye{
+    position:relative;
+    font-size: 23px;
+    color:#747474;
+    top: 15px;
+    left: 160px;
+}
+
+.eye i{
+    cursor:pointer;
+    position: relative;
+}
+
 .button-submit{
     background-color: #242424;
     font-size: 16px;
@@ -133,7 +146,7 @@
     justify-content: space-between;
     width: 90%;
     margin: 0 auto;
-    max-width: 450px;
+    max-width: 360px;
 
     a{
         text-decoration: none;
@@ -148,7 +161,7 @@
     color:#575757;
     width: 90%;
     margin: 0 auto;
-    max-width: 4500px;
+    max-width: 360px;
 
     .terms{
         text-align: left;
@@ -176,7 +189,7 @@
 
     .main-login, .main-register{
         background-color: rgb(250, 250, 250);
-        width: 100vw;
+        width: 50vw;
         height: 100vh;
         display: flex;
         justify-content: center;
@@ -190,8 +203,20 @@
             padding: 10px 0 10px 0;
             color:#242424;
             margin:0 auto;  
-            max-width: 450px;
+            max-width: 360px;
         }
+    }
+
+    .bcc-img{
+        width: 50vw;
+        height: 100vh; 
+        background-image: url(https://i.pinimg.com/564x/09/4c/5f/094c5fe42c4b0c471179d80483c40ace.jpg);
+        position: absolute;
+        background-repeat:no-repeat;
+        background-size:cover;
+        background-position-x:right;
+        background-position-y:center;
+        right:0;
     }
 
 }

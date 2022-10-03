@@ -1,12 +1,13 @@
 import React from 'react'
 import Button from './Button'
-import '../styles/components/_login.scss';
 
 function Login() {
   return (
     <div className='main-login'>
         <p>Palomo</p>
         <h1>Bienvenido de vuelta</h1>
+
+        <div className='bcc-img'></div>
 
         <form className='form-login'>
 
@@ -20,6 +21,7 @@ function Login() {
         <div className="form">
             <input type="password" name="password" autocomplete='off' required />
             <label from="password" className="label-name">
+                {/* <button className='eye'><i className="fa-regular fa-eye"></i></button> */}
                 <span className="content-name">Contraseña</span>
             </label>
         </div>

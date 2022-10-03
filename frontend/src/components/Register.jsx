@@ -1,10 +1,11 @@
 import React from 'react'
 import Button from './Button'
-import '../styles/components/_register.scss';
 
 function Register() {
   return (
     <div className='main-register'>
+
+        <div className='bcc-img'></div>
 
         <form className='form-register'>
 
@@ -43,7 +44,7 @@ function Register() {
 
         <div className='links-register'>
           <p className='terms'>Al registrarte, aceptas nuestros <a href="">términos y condiciones</a>.</p>
-          <p className='already-account'>¿Ya tienes una cuenta?<a href=""> Inicia sesión</a></p>
+          <p className='already-account'>¿Ya tienes una cuenta?<a href="/"> Inicia sesión</a></p>
         </div>
 
     

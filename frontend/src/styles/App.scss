@@ -7,6 +7,9 @@
 @import './components/perfil';
 @import './components/config';
 
-.App {
-    text-align: center;
+@import './components/login';
+
+*{
+  box-sizing: border-box;
+  text-align: center;
 }

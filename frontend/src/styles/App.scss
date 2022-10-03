@@ -10,7 +10,9 @@
 @import './components/reciveMsj';
 @import './components/sendMsj';
 @import './components/inputChat';
+@import './components/login';
 
-.App {
-    text-align: center;
+*{
+  box-sizing: border-box;
+  text-align: center;
 }

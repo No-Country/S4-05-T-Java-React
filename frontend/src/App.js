@@ -6,6 +6,7 @@ import { Home } from './components/Home';
 import { Test } from './components/Test';
 import { Header } from './components/Header';
 import Perfil from './components/Perfil';
+import Contacts from './components/Contacts';
 import Config from './components/Config';
 
 function App() {
@@ -15,12 +16,12 @@ function App() {
             <Routes>
               <Route path="/" element={ <Login />} />
               <Route path="/registration" element={ <Register/> } />
-              <Route path="/home" element={""} />
+              <Route path="/home" element={ <Home/> } />
               <Route path="/chat:id" element={""} />
               <Route path="/perfil:id" element={ <Perfil /> } />
               <Route path="/config" element={ <Config /> } />
               <Route path="/selectContact" element={""} />
-              <Route path="/contacts" element={""} />
+              <Route path="/contacts" element={<Contacts/>} />
               <Route path="/newGroup" element={""} />
               <Route path="/addContact" element={""} />
               <Route path="/test" element={<Test/>} />

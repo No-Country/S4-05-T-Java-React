@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from "react-router-dom";
 
 export const Header = ({ data }) => {
 
@@ -30,7 +31,7 @@ export const Header = ({ data }) => {
       </div>
       <div className="header__options" style={ optionsShow ?{ 'display': 'block', 'opacity': 1 } :  { 'display': 'none', 'opacity': 0 }}>
         <ul>
-          <li>Ver contactos</li>
+          <Link to="/contacts"><li>Ver Contactos</li></Link>
           <li>Crear nuevo grupo</li>
           <li>Configuración</li>
         </ul>

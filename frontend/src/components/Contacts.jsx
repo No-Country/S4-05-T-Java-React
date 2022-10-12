@@ -1,8 +1,12 @@
-import React from 'react'
+import { useState } from 'react'
 import { ChatContact } from './ChatContact'
 import { HeaderBack } from './HeaderBack'
+import ClassNames from 'classnames'
+import Modal from './Modal'
 
 function Contacts() {
+
+    const [openModal, SetOpenModal] = useState(false);
 
     const data = [
         {
@@ -81,19 +85,30 @@ function Contacts() {
 
 
   return (
-    <>
+    <div className='main'>
         <HeaderBack
             title = "Contactos"
             subtitle = {`${data.length} contactos`}
         />
 
+        <div className='main-contacts'>
+
             { data.map( item => (
-                <ChatContact
-                    item={item} 
-                    key={item.id}
-                />
+                <button className={ClassNames('openModalBtn', 'Chat-contact')} onClick={() => {SetOpenModal(true)}}>
+
+                    <ChatContact
+                        item={item} 
+                        key={item.id}
+                    />
+
+                </button>
             ))}
-    </>
+
+        </div>
+
+        {openModal && <Modal closeModal={SetOpenModal}/>}
+
+    </div>
   )
 }
 

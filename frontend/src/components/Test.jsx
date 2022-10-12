@@ -1,5 +1,4 @@
 import React from 'react'
-import { Header } from './Header'
 import { HeaderBack } from './HeaderBack'
 
 export const Test = () => {

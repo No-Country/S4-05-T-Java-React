@@ -1,10 +1,12 @@
 .header-back {
     background-color: $purple;
-    height: 60px;
+    height: 75px;
     display: flex;
     align-items: center;
     color: $almostWhite;
     padding: 0rem 1rem;
+    position: fixed;
+    width: 100%;
     img {
         margin-right: 0.8rem;
         cursor: pointer;
@@ -18,9 +20,14 @@
         h3,
         h4 {
             margin: 0;
+            letter-spacing: 0.5px;
+            font-size: 18px;
+            font-weight: 500;
         }
         h4 {
-            font-weight: 300;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+            font-size: 14px;
             margin-top: 0.2rem;
         }
     }

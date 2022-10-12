@@ -4,7 +4,6 @@ import Login from './components/Login';
 import Register from './components/Register';
 import { Home } from './components/Home';
 import { Test } from './components/Test';
-import { Header } from './components/Header';
 import Perfil from './components/Perfil';
 import Contacts from './components/Contacts';
 import Config from './components/Config';

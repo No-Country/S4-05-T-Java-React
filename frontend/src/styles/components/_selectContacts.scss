@@ -1,0 +1,28 @@
+
+.selectContacts {
+    width: 100vw;
+
+    &__div {
+        width: 100%;
+        height: calc(100vh - 3.75rem - 6rem);
+        overflow: scroll;
+        position: relative;
+    }
+
+    &__enter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 1.5rem;
+        background-color: #242424;
+        position: absolute;
+        bottom: 1.5rem;
+        right: 1.5rem;
+
+        img {
+            transform: rotate(180deg);
+        }
+    }
+}

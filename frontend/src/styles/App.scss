@@ -11,8 +11,13 @@
 @import './components/sendMsj';
 @import './components/inputChat';
 @import './components/login';
+@import './components//contact';
+@import './components/selectedContacts';
+@import './components/widgetContact';
+@import './components/selectContacts';
 
 *{
-  box-sizing: border-box;
-  text-align: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }

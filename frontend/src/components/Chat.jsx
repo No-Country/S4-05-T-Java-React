@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { useContext } from "react";
-import { useEffect } from "react";
-import ChatContext from "../contexts/ChatContext";
+import { HeaderBack } from "./HeaderBack";
 import InputChat from "./InputChat";
 import ReciveMsj from "./ReciveMsj";
 import SendMsj from "./SendMsj";
@@ -113,6 +111,11 @@ function Chat() {
 
     return(
         <div className="chat">
+            <HeaderBack 
+                title = {"Pablo" /* Nombre del chat */} 
+                subtitle = {"16:30" /* Hora de ultima conexxion/en linea/desc */}
+            />
+            
             <div className="chat__msjs">
                 {chatLog.map((m) => {
                     return(

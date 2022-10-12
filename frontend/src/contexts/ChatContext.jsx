@@ -1,7 +1,4 @@
-import React from "react";
-import { useState } from "react";
-import { createContext } from "react";
-
+import React, { useState, createContext } from "react";
 export const ChatContext = createContext()
 
 function ChatProvider({children}) {
@@ -19,7 +16,7 @@ function ChatProvider({children}) {
             chatLog,
             getChatLog
         }}>
-
+            {children}
         </ChatContext.Provider>
     )
 }

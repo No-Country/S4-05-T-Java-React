@@ -9,6 +9,7 @@ function ReciveMsj(props) {
             </div>                    
 
             <div className="reciveMsj__main">
+                <h5>{props.sender}</h5>
                 <p className="reciveMsj__msj">{props.msj}</p>
                 <p className="reciveMsj__time">{props.time}</p>
             </div>               

@@ -6,10 +6,21 @@
 @import './components/home';
 @import './components/perfil';
 @import './components/config';
+@import './components/chat';
+@import './components/reciveMsj';
+@import './components/sendMsj';
+@import './components/inputChat';
+@import './components/login';
+@import './components//contact';
+@import './components/selectedContacts';
+@import './components/widgetContact';
+@import './components/selectContacts';
 @import './components/contacts';
 @import './components/login';
 @import './components/modal';
 
 *{
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { ButtonChat } from './ButtonChat'
 import { ChatContact } from './ChatContact'
 import {Header} from './Header'
+import { Link } from 'react-router-dom'
 
 export const Home = () => {
 

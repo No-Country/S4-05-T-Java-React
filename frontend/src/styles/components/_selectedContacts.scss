@@ -1,0 +1,15 @@
+
+.selectedContacts {
+    display: flex;
+    align-items: center;
+    overflow: scroll;
+    width: 100vw;
+    height: 5.5rem;
+    padding: 0 0.5rem;
+
+    &__h3 {
+        width: 100%;
+        color: #BABABA;
+        text-align: center;
+    }
+}

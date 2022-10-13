@@ -1,16 +1,21 @@
-.main-contacts{
-    padding: 75px 0 0 0;
-    width: 100%;
+.main {
+    height: 100vh;
 
-    button{
-        border: none;
-        background-color: transparent;
-        padding:0;
-        margin: 0;
-    }
+    .main-contacts{
+        width: 100%;
+        height: calc(100vh - 75px);
+        overflow: scroll;
 
-    button:active, button:hover{
-        background-color: $ligthPurple;
-        cursor:pointer;
+        button{
+            border: none;
+            background-color: transparent;
+            padding:0;
+            margin: 0;
+        }
+
+        button:active, button:hover{
+            background-color: $ligthPurple;
+            cursor:pointer;
+        }
     }
 }

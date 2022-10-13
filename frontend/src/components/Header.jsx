@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from "react-router-dom";
 
 export const Header = ({ data }) => {
 
@@ -24,13 +25,13 @@ export const Header = ({ data }) => {
         <h3>{data.user}</h3>
       </div>}
       <div className="header__icons">
-        {!data && <img src='/add_nav.png'/>}
-        <img src='/search_nav.png' onClick={showSearch}/>
-        <img src='/options_nav.png' onClick={showOptions}/>
+        {!data && <img src='/add_nav.png' alt="Icono de añadir"/>}
+        <img src='/search_nav.png' onClick={showSearch} alt="Icono de búsqueda"/>
+        <img src='/options_nav.png' onClick={showOptions} alt="Icono de opciones"/>
       </div>
       <div className="header__options" style={ optionsShow ?{ 'display': 'block', 'opacity': 1 } :  { 'display': 'none', 'opacity': 0 }}>
         <ul>
-          <li>Ver contactos</li>
+          <Link to="/contacts"><li>Ver Contactos</li></Link>
           <li>Crear nuevo grupo</li>
           <li>Configuración</li>
         </ul>

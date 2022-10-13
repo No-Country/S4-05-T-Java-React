@@ -6,7 +6,7 @@
     justify-content: center;
     flex-direction: column;
 
-    h1{
+    h2{
         font-weight: 500;
         font-size: 20px;
         text-align:start;
@@ -28,7 +28,7 @@
 }
 
 .main-login{
-    p{
+    h1{
         font-weight: 700;
         font-size: 23px;
         text-transform: uppercase;
@@ -185,6 +185,51 @@
     }
 }
 
+.errmsg{
+    font-weight: 400;
+    font-size: 14px;
+    text-align:start;
+    width: 90%;
+    padding: 10px;
+    color: $brightRed;
+    background-color: $transparentRed;
+    border-radius: 5px;
+    margin: 5px auto;  
+    max-width: 360px;
+}
+
+.instructions{
+    font-size: 12px;
+    text-align:start;
+    padding: 10px;
+    color: $brightOrange;
+    background-color: $transparentOrange;
+    border-radius: 5px;
+    margin: 10px auto 0 auto;
+    width: 100%;
+    max-width: 360px;
+}
+
+.offscreen{
+    display: none;
+
+}
+
+.invalid, .valid{
+    display: block;
+    position: relative;
+    left: 90%;
+    top: 30%;
+}
+
+.hide{
+    display: none;
+}
+
+.svg {
+    width:20px;
+}
+
 @media (min-width: 800px){
 
     .main-login, .main-register{
@@ -195,7 +240,7 @@
         justify-content: center;
         flex-direction: column;
     
-        h1{
+        h2{
             font-weight: 500;
             font-size: 20px;
             text-align:start;

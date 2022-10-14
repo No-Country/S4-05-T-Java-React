@@ -1,9 +1,9 @@
-import { useRef, useState, useEffect, useContext } from 'react'
+import { useRef, useState, useEffect, useContext, Redirect } from 'react'
 import { Link } from "react-router-dom";
 import AuthContext from '../contexts/AuthProvider';
 
 import axios from '../api/axios';
-const LOGIN_URL = '/auth';
+const LOGIN_URL = '/auth/login';
 
 function Login() {
   const { setAuth } = useContext(AuthContext);
@@ -28,7 +28,10 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(LOGIN_URL, JSON.stringify({user, pwd}),
+      const response = await axios.post(LOGIN_URL, JSON.stringify({
+                                                                    password: pwd,
+                                                                    usernameOrEmail: user
+                                                                  }),
         {
           headers: { 'Content-Type': 'application/json'},
           withCredentials: true
@@ -57,14 +60,14 @@ function Login() {
       errRef.current.focus();
     }
 
+    setSuccess(true);
+
   }
 
   return (
     <>
       {success ? (
-        <section>
-          <h1>You are logged in!</h1>
-        </section>
+        <Redirect to="/home"/>
       ) : (
     <div className='main-login'>
         <h1>Palomo</h1>

@@ -10,7 +10,7 @@ function SendMsj(props) {
             </div>
 
             <div className="sendMsj__arrow"
-                style={props.first ? {backgroundImage: "linear-gradient(to top left, #EDEDED 50%, #D6DCFF 50%)"} : {backgroundColor: "#EDEDED"}}>
+                style={props.first ? {backgroundImage: "linear-gradient(to top left, #99999900 50%, #D6DCFF 50%)"} : {backgroundColor: "#99999900"}}>
             </div>                    
         </div>
     )

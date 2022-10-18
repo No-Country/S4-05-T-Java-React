@@ -12,7 +12,9 @@ function Chat() {
 
     const [chatLogLoaded, setChatLogLoaded] = useState(false)
     
+    // const [chatLog, setCahtLog] = useState([])
     const [chatLog, setChatLog] = useState([
+        
         {
             timestamp: 0,
             sender: "Leonardo",
@@ -81,19 +83,19 @@ function Chat() {
     let prev = ""
     let auxLog
 
-    console.log(chatLog);
-    console.log(chatLog.length);
+    // console.log(chatLog);
+    // console.log(chatLog.length);
 
     for(let i = 0; i < chatLog.length; i++){
         auxLog = chatLog.sort(((a, b) => b.timestamp - a.timestamp))
-        console.log(i, prev, auxLog[i].sender);
+        // console.log(i, prev, auxLog[i].sender);
         if(prev === ""){
             prev = auxLog[i].sender
             continue
         }
 
         if(prev === auxLog[i].sender){
-            console.log(false);
+            // console.log(false);
             auxLog[i-1].first = false
         }
         
@@ -102,6 +104,7 @@ function Chat() {
     }
 
     if(!chatLogLoaded){
+
         setChatLog([
             ...auxLog,                
         ])

@@ -17,7 +17,7 @@ function Contact(props) {
 
             <div className="contact__description">
                 <h4>{props.name}</h4>
-                <p>{props.desc.slice(0,30)}</p>
+                {/* <p>{props.desc.slice(0,30)}</p> */}
             </div>
         </div>
     )

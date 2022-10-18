@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { GlobalContext } from "../contexts/GlobalContext";
 import Contact from "./Contact";
 import { HeaderBack } from "./HeaderBack";
 import SelectedContacts from "./SelectedContacts";
 
-function SelectContacts() {
+const imagen = require.context('./../img', true);
+
+function SelectContacts(props) {
     
-    const {selected, contacts} = useContext(GlobalContext)
+    const {selected, contacts, createChat} = useContext(GlobalContext)
 
     return(
         <div className="selectContacts">
@@ -20,19 +22,29 @@ function SelectContacts() {
             <hr/>
 
             <div className="selectContacts__div">
-                {contacts.map((contact) => {
-                    return(
-                        <Contact 
-                            id = {contact.id}
-                            img = {contact.img}
-                            name = {contact.name}
-                            desc = {contact.desc}
-                        />
-                    )
-                })}
+                {contacts
+                ?
+                    contacts.map((contact) => {
+                        return(
+                            <Contact 
+                                id = {contact.id}
+                                img = {contact.img}
+                                name = {contact.name}
+                                desc = {contact.desc}
+                            />
+                        )
+                    })
+                :
+                    <div className="selectContacts__loading">
+                        <img src={imagen("./loading.gif")} alt=""/>
+                    </div>
+                }
+                
             </div>
 
-            <div className="selectContacts__enter">
+            
+
+            <div className="selectContacts__enter" onClick={() => createChat(selected)}>
                     <img src="./back.png"/>
             </div>
         </div>

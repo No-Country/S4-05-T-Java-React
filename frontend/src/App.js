@@ -11,8 +11,9 @@ import GlobalProvider from './contexts/GlobalContext';
 
 function App() {
   return (
-    <GlobalProvider>
-      <BrowserRouter>
+    
+    <BrowserRouter>
+      <GlobalProvider>
           <div className='app'>
             <Routes>
               <Route path="/" element={ <Login />} />
@@ -27,8 +28,9 @@ function App() {
               <Route path="/addContact" element={""} />
             </Routes>
         </div>
-      </BrowserRouter>
-    </GlobalProvider>
+      </GlobalProvider>
+    </BrowserRouter>
+    
   )
 }
 

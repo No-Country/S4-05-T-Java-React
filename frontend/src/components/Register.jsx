@@ -8,7 +8,7 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 const NAME_REGEX = /^[A-Z][a-z]+\s[A-Z][a-z]+$/;
 
-const REGISTER_URL = '/users';
+const REGISTER_URL = '/auth/signup';
 
 function Register() {
 

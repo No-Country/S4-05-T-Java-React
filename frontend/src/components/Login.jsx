@@ -1,9 +1,9 @@
-import { useRef, useState, useEffect, useContext, Redirect } from 'react'
-import { Link } from "react-router-dom";
+import { useRef, useState, useEffect, useContext } from 'react'
+import { Link, useNavigate } from "react-router-dom";
 import AuthContext from '../contexts/AuthProvider';
 
 import axios from '../api/axios';
-const LOGIN_URL = '/auth/login';
+const LOGIN_URL = 'auth/login';
 
 function Login() {
   const { setAuth } = useContext(AuthContext);
@@ -24,20 +24,47 @@ function Login() {
     setErrMsg('');
   }, [user, pwd])
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) =>{
     e.preventDefault();
+    let token;
 
-    try {
-      const response = await axios.post(LOGIN_URL, JSON.stringify({
-                                                                    password: pwd,
-                                                                    usernameOrEmail: user
-                                                                  }),
-        {
-          headers: { 'Content-Type': 'application/json'},
-          withCredentials: true
-        }
-      );
-      console.log(JSON.stringify(response?.data));
+     try {
+      const response =  await fetch("https://chat-palomo.herokuapp.com/auth/login", {
+        method: "POST",
+        modo: "cors",
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            /* 'Authorization': token */
+        },
+        body:JSON.stringify({
+            password: pwd,
+            usernameOrEmail: user
+            })
+    }
+        ) .then(resp => {
+
+          resp.json()
+
+          console.log(resp)
+
+          if (!resp.status) {
+            setErrMsg('No hubo respuesta del servidor')
+          } else if (resp.status == 400) {
+            setErrMsg('Por favor rellene todos los campos');
+          } else if (resp.status == 401) {
+            setErrMsg('Sin autorización')
+          } else {
+            setErrMsg('Ha ocurrido un error');
+          } 
+
+          if(resp.status == 200) {
+            navigate("/home");
+          }
+        })
+
+      /* console.log(token); */
 
       const accessToken = response?.data?.accessToken;
       const roles = response?.data?.roles;
@@ -59,15 +86,13 @@ function Login() {
       }
       errRef.current.focus();
     }
-
-    setSuccess(true);
-
   }
+    /* setSuccess(true); */
 
   return (
     <>
       {success ? (
-        <Redirect to="/home"/>
+        null
       ) : (
     <div className='main-login'>
         <h1>Palomo</h1>

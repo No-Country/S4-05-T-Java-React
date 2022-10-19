@@ -1,14 +1,19 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { HeaderBack } from './HeaderBack'
 import ClassNames from 'classnames'
 import { GlobalContext } from '../contexts/GlobalContext';
 import Modal from './Modal'
-import Contact from './Contact'
+import { ContactBook } from './ContactBook'
 
 function Contacts() {
 
     const [openModal, SetOpenModal] = useState(false);
-    const { deleteContact, contacts } = useContext(GlobalContext);
+    const [userClicked, SetUserClicked] = useState('');
+    const { contacts } = useContext(GlobalContext);
+
+    useEffect(() => {
+        console.log(userClicked)
+    }, [userClicked])
 
     /* const data = [
         {
@@ -96,22 +101,16 @@ function Contacts() {
         <div className='main-contacts'>
 
             { contacts.map( item => (
-                <button className={ClassNames('openModalBtn', 'Chat-contact')} onClick={() => {SetOpenModal(true)}}>
+                <button className={ClassNames('openModalBtn', 'Chat-contact')} onClick={() => {SetOpenModal(true); SetUserClicked(item.id);}}>
 
-                    <Contact
-                        key={item.id}
-                        id = {item.id}
-                        img = {item.img}
-                        name = {item.name}
-                        desc = {item.desc}
-                    />
+                    <ContactBook item={item} key={item.id}/>
 
                 </button>
             ))}
 
         </div>
 
-        {openModal && <Modal closeModal={SetOpenModal}/>}
+        {openModal && <Modal closeModal={SetOpenModal} userClicked={userClicked}/>}
 
     </div>
   )

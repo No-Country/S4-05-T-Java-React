@@ -117,8 +117,8 @@ function GlobalProvider({children}){
 
     const getUserData = async (id) => {
         const url = "https://chat-palomo.herokuapp.com/users/" + id
-
         await fetch(url, {
+
             method: "GET",
             modo: "cors",
             headers: {

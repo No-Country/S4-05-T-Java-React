@@ -166,10 +166,10 @@ function GlobalProvider({children}){
         });
     }
 
-    if(contacts === undefined){
+/*     if(contacts === undefined){
         console.log("get");
         getContacts(8)
-    }   
+    }   */ 
 
     const createChat = async (selcted) => {
         let type
@@ -255,7 +255,7 @@ function GlobalProvider({children}){
               setErrMsg('Sin autorización')
             } else if (resp.status == 200) {
                 /* setUser(resp.user) */
-                /* getContacts(resp.user.id) */
+                getContacts(8)
                 navigate("/home");
             } else {
                 console.log('soy el error')
@@ -286,6 +286,32 @@ function GlobalProvider({children}){
       }
     }
 
+    const deleteContact = (username) => {
+
+        const url = "https://chat-palomo.herokuapp.com/users/" + user.id + "/remove/" + username
+
+        fetch(url, {
+            method: "DELETE",
+            modo: "cors",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "Access-Control-Allow-Origin": "*",
+                "Accept": "*/*"
+            }        
+        })
+        .then((response) => { 
+            response.json()
+                .then((data) => {
+                    console.log(data);
+                    setContacts(data)
+                })
+                    .catch((err) => {
+                        console.log(err);
+                    }) 
+        });
+
+    }
+
     return(
         <GlobalContext.Provider value={{
             selected,
@@ -294,7 +320,8 @@ function GlobalProvider({children}){
             select,
             getContacts,
             createChat,
-            loginHandle
+            loginHandle,
+            deleteContact
         }}>
             {children}
         </GlobalContext.Provider>

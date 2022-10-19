@@ -1,18 +1,16 @@
-import { useState } from 'react'
-import { ChatContact } from './ChatContact'
+import { useContext, useState } from 'react'
 import { HeaderBack } from './HeaderBack'
 import ClassNames from 'classnames'
+import { GlobalContext } from '../contexts/GlobalContext';
 import Modal from './Modal'
-
-
-import axios from '../api/axios'
-const CONTACTS_URL = '/users/{id}/contact';
+import Contact from './Contact'
 
 function Contacts() {
 
     const [openModal, SetOpenModal] = useState(false);
+    const { deleteContact, contacts } = useContext(GlobalContext);
 
-    const data = [
+    /* const data = [
         {
             id: 1,
             msj: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ut excepturi nihil modi. Blanditiis tempore eveniet ea soluta consectetur molestiae obcaecati similique id exercitationem modi non, accusamus natus eos assumenda?",
@@ -85,24 +83,27 @@ function Contacts() {
             icon: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg",
             user: "Maria"
         },
-     ]
+     ] */
 
 
   return (
     <div className='main'>
         <HeaderBack
             title = "Contactos"
-            subtitle = {`${data.length} contactos`}
+            subtitle = {`${contacts.length} contactos`}
         />
 
         <div className='main-contacts'>
 
-            { data.map( item => (
+            { contacts.map( item => (
                 <button className={ClassNames('openModalBtn', 'Chat-contact')} onClick={() => {SetOpenModal(true)}}>
 
-                    <ChatContact
-                        item={item} 
+                    <Contact
                         key={item.id}
+                        id = {item.id}
+                        img = {item.img}
+                        name = {item.name}
+                        desc = {item.desc}
                     />
 
                 </button>

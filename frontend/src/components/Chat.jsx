@@ -8,98 +8,140 @@ function Chat() {
 
     // const {chatLog, getChatLog} = useContext(ChatContext)
 
-    const [userID, setUserID] = useState("Leonardo")
+    const [userID, setUserID] = useState(0)
 
     const [chatLogLoaded, setChatLogLoaded] = useState(false)
     
     // const [chatLog, setCahtLog] = useState([])
-    const [chatLog, setChatLog] = useState([
-        
+    const [chatLog, setChatLog] = useState([        
         {
-            timestamp: 0,
-            sender: "Leonardo",
-            msj: "asñldfsld asdlñf sdlf sd sdkf sdlñ k slsj lñsdfsd lfsad fasdf ñsldfk sadñlfjas dlñfjasd flñasjdf ñlasdlñs",
-            first: true
+            date: 0,
+            id: 0,
+            message: "asdfasdfasfasdfasd asdf asdf as fasdfasdasfasdfasdf asdfasf",
+            userSenderId: 0
         },
         {
-            timestamp: 1,
-            sender: "Pablo",
-            msj: "asñldfsld asdlñf sdlf sd sdkf sdlñ k slsj lñsdfsd lfsad fasdf ñsldfk sadñlfjas dlñfjasd flñasjdf ñlasdlñs",
-            first: true
+            date: 1,
+            id: 1,
+            message: "stasd fasdfasdf asdfa sdf asdfa sdfasdf ing",
+            userSenderId: 0
         },
         {
-            timestamp: 2,
-            sender: "Leonardo",
-            msj: "asñldfsld asdlñf sdlf sd sdkf sdlñ k slsj lñsdfsd lfsad fasdf ñsldfk sadñlfjas dlñfjasd flñasjdf ñlasdlñs",
-            first: true
+            date: 2,
+            id: 2,
+            message: "stasdfsring",
+            userSenderId: 1
         },
         {
-            timestamp: 3,
-            sender: "Leonardo",
-            msj: "asñldfsld asdlñf sdlf sd sdkf sdlñ k slsj lñsdfsd lfsad fasdf ñsldfk sadñlfjas dlñfjasd flñasjdf ñlasdlñs",
-            first: true
+            date: 3,
+            id: 3,
+            message: "strg",
+            userSenderId: 0
         },
         {
-            timestamp: 4,
-            sender: "Pablo",
-            msj: "asñldfsld asdlñf sdlf sd sdkf sdlñ k slsj lñsdfsd lfsad fasdf ñsldfk sadñlfjas dlñfjasd flñasjdf ñlasdlñs",
-            first: true
+            date: 4,
+            id: 4,
+            message: "str asdfasd a sdfasdfasdfasdfasdf ing",
+            userSenderId: 2
         },
         {
-            timestamp: 5,
-            sender: "Leonardo",
-            msj: "asñldfsld asdlñf sdlf sd sdkf sdlñ k slsj lñsdfsd lfsad fasdf ñsldfk sadñlfjas dlñfjasd flñasjdf ñlasdlñs",
-            first: true
+            date: 5,
+            id: 5,
+            message: "sta sdfas asdring",
+            userSenderId: 2
         },
         {
-            timestamp: 6,
-            sender: "Pablo",
-            msj: "asñldfsld asdlñf sdlf sd sdkf sdlñ k slsj lñsdfsd lfsad fasdf ñsldfk sadñlfjas dlñfjasd flñasjdf ñlasdlñs",
-            first: true
+            date: 6,
+            id: 6,
+            message: "sta sdfasdfasdfasdfasdf asd asd d sd sdaf sdfasdfasd as ring",
+            userSenderId: 1
         },
         {
-            timestamp: 7,
-            sender: "Pablo",
-            msj: "asñldfsld asdlñf sdlf sd sdkf sdlñ k slsj lñsdfsd lfsad fasdf ñsldfk sadñlfjas dlñfjasd flñasjdf ñlasdlñs",
-            first: true
+            date: 7,
+            id: 7,
+            message: "stra sdfasd fasd sd sd ds sd fsd fsd fsdfsdafasdfasdfasdfasdfasdf asd as asdf asf asd asd asding",
+            userSenderId: 0
         },
         {
-            timestamp: 8,
-            sender: "Pablo",
-            msj: "asñldfsld asdlñf sdlf sd sdkf sdlñ k slsj lñsdfsd lfsad fasdf ñsldfk sadñlfjas dlñfjasd flñasjdf ñlasdlñs",
-            first: true
+            date: 8,
+            id: 8,
+            message: "stra sdfasdfasd fasdf asd sd sda ing",
+            userSenderId: 1
         },
+        {
+            date: 9,
+            id: 9,
+            message: "stra sd fasd asd fasd sda sd fsda fasd fing",
+            userSenderId: 1
+        },
+        {
+            date: 10,
+            id: 10,
+            message: "stra sd fasd asd fasd sda sd fsda fasd fing",
+            userSenderId: 1
+        },
+        {
+            date: 11,
+            id: 11,
+            message: "stra sd fasd asd fasd sda sd fsda fasd fing",
+            userSenderId: 1
+        },
+        {
+            date: 12,
+            id: 12,
+            message: "stra sd fasd asd fasd sda sd fsda fasd fing",
+            userSenderId: 0
+        },
+        {
+            date: 13,
+            id: 13,
+            message: "stra sd fasd asd fasd sda sd fsda fasd fing",
+            userSenderId: 0
+        },
+        {
+            date: 14,
+            id: 14,
+            message: "stra sd fasd asd fasd sda sd fsda fasd fing",
+            userSenderId: 0
+        },
+        {
+            date: 15,
+            id: 15,
+            message: "stra sd fasd asd fasd sda sd fsda fasd fing",
+            userSenderId: 0
+        },
+        {
+            date: 16,
+            id: 16,
+            message: "stra sd fasd asd fasd sda sd fsda fasd fing",
+            userSenderId: 2
+        },
+        {
+            date: 17,
+            id: 17,
+            message: "stra sd fasd asd fasd sda sd fsda fasd fing",
+            userSenderId: 1
+        }
     ])    
-
-    // useEffect(() => {
-        
-    
-    //     return () => {
-    //         second
-    //     }
-    // }, [third])
-    
 
     let prev = ""
     let auxLog
 
-    // console.log(chatLog);
-    // console.log(chatLog.length);
-
     for(let i = 0; i < chatLog.length; i++){
         auxLog = chatLog.sort(((a, b) => b.timestamp - a.timestamp))
-        // console.log(i, prev, auxLog[i].sender);
+        auxLog[i].first = true
+
+        // console.log(i, prev, auxLog[i].userSenderId);
         if(prev === ""){
-            prev = auxLog[i].sender
+            prev = auxLog[i].userSenderId
             continue
         }
 
-        if(prev === auxLog[i].sender){
-            // console.log(false);
+        if(prev === auxLog[i].userSenderId){
             auxLog[i-1].first = false
-        }
+        } 
         
-        prev = auxLog[i].sender
+        prev = auxLog[i].userSenderId
         
     }
 
@@ -123,18 +165,18 @@ function Chat() {
                 {chatLog.map((m) => {
                     return(
                         <div className="chat__div">
-                            {m.sender === userID
+                            {m.userSenderId === userID
                             ?
                                 <SendMsj
-                                    msj = {m.msj}
-                                    time = {m.timestamp}
+                                    msj = {m.message}
+                                    time = {m.date}
                                     first = {m.first}
                                 />                    
                             :
                                 <ReciveMsj 
-                                    sender = {m.sender}
-                                    msj = {m.msj}
-                                    time = {m.timestamp}
+                                    sender = {m.userSenderId}
+                                    msj = {m.message}
+                                    time = {m.date}
                                     first = {m.first}
                                 />
                             }

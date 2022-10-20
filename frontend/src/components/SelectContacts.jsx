@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext} from "react";
 import { GlobalContext } from "../contexts/GlobalContext";
 import Contact from "./Contact";
 import { HeaderBack } from "./HeaderBack";

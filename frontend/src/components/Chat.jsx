@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { GlobalContext } from "../contexts/GlobalContext";
 import { HeaderBack } from "./HeaderBack";
 import InputChat from "./InputChat";
 import ReciveMsj from "./ReciveMsj";
@@ -6,7 +7,7 @@ import SendMsj from "./SendMsj";
 
 function Chat() {
 
-    // const {chatLog, getChatLog} = useContext(ChatContext)
+    const {chatContacts} = useContext(GlobalContext)
 
     const [userID, setUserID] = useState(0)
 

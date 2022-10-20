@@ -1,6 +1,23 @@
-import { React } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+import { React, useContext } from "react";
+import { GlobalContext } from "../contexts/GlobalContext";
 
 function ReciveMsj(props) {
+
+    const {chatContacts} = useContext(GlobalContext)
+
+    const [sender, setSender] = useState("")
+
+    for(let i = 0; i < chatContacts.length; i++){
+        if(props.sender === chatContacts[i].id){
+            setSender(chatContacts[i].username)
+        }
+    }
+
+    // useEffect(() => {
+
+    // }, [sender])
     
     return(
         <div className="reciveMsj" style={props.first ? {marginTop: "1rem"} : {marginTop: "0.2rem"}}>
@@ -9,7 +26,7 @@ function ReciveMsj(props) {
             </div>                    
 
             <div className="reciveMsj__main">
-                <h5>{props.first ? props.sender : null}</h5>
+                <h5>{props.first ? sender : null}</h5>
                 <p className="reciveMsj__msj">{props.msj}</p>
                 <p className="reciveMsj__time">{props.time}</p>
             </div>               

@@ -1,8 +1,21 @@
 import React from 'react'
+import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { GlobalContext } from '../contexts/GlobalContext'
 
 export const ChatContact = ({ item }) => {
+
+  const navigate = useNavigate()
+
+  const {getChatContacts} = useContext(GlobalContext)
+
+  const chat = (id) => {
+    getChatContacts(id)
+    navigate("/chat:" + id.toString())
+  }
+
   return (
-    <div className="Chat-contact">
+    <div className="Chat-contact" onClick={() => chat(item.id)}>
         <div className="Chat-contact__logo">
             <img src={ item.icon } alt='icon'/>
         </div>

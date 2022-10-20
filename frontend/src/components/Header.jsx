@@ -26,14 +26,12 @@ export const Header = ({ data }) => {
       </div>}
       <div className="header__icons">
         {!data && <img src='/add_nav.png' alt="Icono de añadir"/>}
-        <img src='/search_nav.png' onClick={showSearch} alt="Icono de búsqueda"/>
         <img src='/options_nav.png' onClick={showOptions} alt="Icono de opciones"/>
       </div>
       <div className="header__options" style={ optionsShow ?{ 'display': 'block', 'opacity': 1 } :  { 'display': 'none', 'opacity': 0 }}>
         <ul>
           <Link to="/contacts"><li>Ver Contactos</li></Link>
-          <li>Crear nuevo grupo</li>
-          <li>Configuración</li>
+          <Link to="/config"><li>Configuración</li></Link>
         </ul>
       </div>
       <div className="header__search" style={ searchShow ?{ 'display': 'block', 'opacity': 1 } :  { 'display': 'none', 'opacity': 0 }}>

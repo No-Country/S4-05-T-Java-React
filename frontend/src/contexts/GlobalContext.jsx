@@ -174,7 +174,6 @@ function GlobalProvider({children}){
 
     if(contacts === undefined){
         console.log("get");
-        console.log(user);
         getContacts(19)
     }   
 

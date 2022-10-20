@@ -5,7 +5,7 @@ function ReciveMsj(props) {
     return(
         <div className="reciveMsj" style={props.first ? {marginTop: "1rem"} : {marginTop: "0.2rem"}}>
             <div className="reciveMsj__arrow"
-                style={props.first ? {backgroundImage: "linear-gradient(to top right, #99999900 50%, white 50%)"} : {backgroundColor: "#99999900"}}>
+                style={props.first ? {backgroundImage: "linear-gradient(to top right, #99999900 50%, rgb(218, 213, 213) 50%)"} : {backgroundColor: "#99999900"}}>
             </div>                    
 
             <div className="reciveMsj__main">

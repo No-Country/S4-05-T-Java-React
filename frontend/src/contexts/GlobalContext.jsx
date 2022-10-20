@@ -7,7 +7,13 @@ function GlobalProvider({children}){
 
     const navigate = useNavigate()
 
-    const [user, setUser] = useState()
+    const [user, setUser] = useState({
+    id: 0,
+    name: "",
+    username: "",
+    email: "",
+    picture: ""
+    })
 
     const [selected, setSelected] = useState([])
 
@@ -130,16 +136,16 @@ function GlobalProvider({children}){
         .then((response) => { 
             response.json().then((data) => {
                 console.log(data);
-                setUser(data)
+                setUser(data);
             }).catch((err) => {
                 console.log(err);
             }) 
         });
 
     }
-
-    if(user === undefined){
-        getUserData(8)
+    
+    if (user.id === 0) { 
+        getUserData(47);
     }
 
     const getContacts = (id) => {
@@ -168,7 +174,7 @@ function GlobalProvider({children}){
 
     if(contacts === undefined){
         console.log("get");
-        getContacts(8)
+        getContacts(19)
     }   
 
     const createChat = async (selcted) => {
@@ -227,7 +233,9 @@ function GlobalProvider({children}){
             contacts,
             select,
             getContacts,
-            createChat
+            createChat,
+            user,
+            setUser
         }}>
             {children}
         </GlobalContext.Provider>

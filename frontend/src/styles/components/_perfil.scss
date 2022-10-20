@@ -1,17 +1,3 @@
-.perfilHeader {
-
-    display: flex;
-    align-items: center;
-    color: $almostWhite;
-    background-color: $purple;
-
-    @include media-up("tablet")  {
-        height: 5rem;
-        padding-left: 3rem;
-    }
-
-}
-
 .perfilBody {
     display: flex;
 
@@ -25,49 +11,74 @@
 
 .perfilUserImgCont {
     display: flex;
-}
-.perfilUserImg {
+    margin: 5rem;
 
     @include media-up("tablet") {
-        margin-top: 2rem;
-        height: 10rem;
-        border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+        margin: 2rem;
     }
+}
+
+.perfilUserImg {
+    margin-top: 2rem;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+
 
 }
 
 .perfilBtnImg {
-    z-index: 1;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
     position: absolute;
+    z-index: 1;
+    background-color: $black;
     margin-top: 10rem;
     margin-left: 7rem;
+
+    img {
+        margin: 0.8rem;
+        width: 1.3rem;
+        height: 1.3rem;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    input {
+        display: none;
+    }
 }
+
+
 
 .perfilForm {
     display: flex;
-    width: 65%;
-
+    width: 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5rem;
 
     @include media-up("tablet") {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        width: 65%;
         margin: 1.5rem 0;
     }
 }
 
 .perfilFormInput {
-    
+
     border-top: none;
     border-left: none;
     border-right: none;
     border-width: 1px;
     border-color: $lightGrey;
+    margin: 1.1rem 0;
+    width: 100%;
 
-    @include media-up("tablet") {
-        margin: 1.1rem 0;
-        width: 100%;
-    }
+    @include media-up("tablet") {}
 }
 
 .perfilBtnSave {
@@ -76,11 +87,10 @@
     border-width: 2px;
     height: 2.5rem;
     font-weight: 500;
-    
-    @include media-up("tablet") {
-        margin: 1.3rem 0;
-        width: 100%;
-    }
+    margin: 1.3rem 0;
+    width: 30%;
+
+    @include media-up("tablet") {}
 
     &:hover {
         background-color: $black;

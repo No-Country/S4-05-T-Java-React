@@ -1,27 +1,52 @@
-import { AiFillCamera } from "react-icons/ai";
+import { HeaderBack } from "./HeaderBack";
+import { useState, useContext } from "react";
+import { GlobalContext } from "../contexts/GlobalContext";
 
 const Perfil = () => {
-    
 
-    return (
-        <>
-            <div className="perfilHeader">
-                <h3>Perfil</h3>
+    const { user, setUser } = useContext(GlobalContext)
+    const [userImg, setUserImg] = useState(null)
+
+    const uploadImg = (e) => {
+        // let img;
+        // var fReader = new FileReader(); 
+        // fReader.readAsDataURL(e.target.files[0]); 
+        // fReader.onloadend = function(event){ 
+        //     img = event.target; 
+        // }
+
+        console.log(e);
+    }
+
+    const handleOnChangeInputPerfil = (e) => {
+            setUser({
+                ...user,
+                [e.target.name]: e.target.value,
+            });
+    }
+
+
+return (
+    <>
+        <HeaderBack title={'Perfil'} />
+
+        <div className="perfilBody">
+            <div className="perfilUserImgCont">
+                <img className="perfilUserImg" src={user.picture} alt="Foto perfil" />
+                <label className="perfilBtnImg">
+                    <input type="file" name="img" onChange={uploadImg} />
+                    <img src='/Camera.png' />
+                </label>
             </div>
-            <div className="perfilBody">
-                <div className="perfilUserImgCont">
-                <img className="perfilUserImg" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Foto perfil" />
-                <AiFillCamera size={50} className='perfilBtnImg' />
-                </div>
-                <form className="perfilForm">
-                    <input className="perfilFormInput" type="text" id="userName" placeholder="Nombre" />
-                    <input className="perfilFormInput" type="text" id="userDescription" placeholder="Descripción / Estado" />
-                    <input className="perfilFormInput" type="number" id="userPhone" placeholder="Número de teléfono" />
-                    <button className="perfilBtnSave">Guardar</button>
-                </form>
-            </div>
-        </>
-    );
+            <form className="perfilForm">
+                <input className="perfilFormInput" type="text" name="name" onChange={handleOnChangeInputPerfil} placeholder={user.name} />
+                <input className="perfilFormInput" type="text" name="description" onChange={handleOnChangeInputPerfil} placeholder={user.email} />
+                <input className="perfilFormInput" type="number" name="phone" onChange={handleOnChangeInputPerfil} placeholder={user.id} />
+                <button className="perfilBtnSave">Guardar</button>
+            </form>
+        </div>
+    </>
+);
 }
 
-export default Perfil;
+export default Perfil; 

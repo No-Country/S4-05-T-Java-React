@@ -6,7 +6,9 @@ const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 // eslint-disable-next-line
 const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-const REGISTER_URL = '/register';
+const NAME_REGEX = /^[A-Z][a-z]+\s[A-Z][a-z]+$/;
+
+const REGISTER_URL = '/auth/signup';
 
 function Register() {
 
@@ -29,6 +31,10 @@ function Register() {
     const [validMatch, setValidMatch] = useState(false);
     const [matchFocus, setMatchFocus] = useState(false);
 
+    const [nameLastName, setNameLastName] = useState('');
+    const [validNameLastName, setValidNameLastName] = useState(false);
+    const [nameLastNameFocus, setNameLastNameFocus] = useState(false);
+
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
@@ -43,6 +49,11 @@ function Register() {
         setValidEmail(resultEmail);
       }, [user, email])
 
+      useEffect(() => {
+        const result = NAME_REGEX.test(nameLastName);
+        setValidNameLastName(result);
+      }, [nameLastName])
+
     useEffect(() => {
         const result = PWD_REGEX.test(pwd);
         setValidPwd(result);
@@ -53,7 +64,7 @@ function Register() {
 
       useEffect(() => {
         setErrMsg('');
-      }, [user, pwd, matchPwd, email])
+      }, [user, pwd, matchPwd, email, nameLastName])
 
       const handleSubmit = async (e) => {
         e.preventDefault();
@@ -61,8 +72,9 @@ function Register() {
         const v1 = USER_REGEX.test(user);
         const v2 = PWD_REGEX.test(pwd);
         const v3 = EMAIL_REGEX.test(email);
+        const v4 = NAME_REGEX.test(nameLastName);
 
-        if(!v1 || !v2 || !v3) {
+        if(!v1 || !v2 || !v3 || !v4) {
             setErrMsg('Datos inválidos');
             return;
         }
@@ -70,7 +82,14 @@ function Register() {
         try {
             const response = 
             await axios.post(REGISTER_URL,
-                                JSON.stringify({ user, pwd, email}), 
+                                JSON.stringify({
+                                    email: email,
+                                    name: nameLastName,
+                                    password: pwd,
+                                    picture: "/profileDefaultPicture.png",
+                                    repeatPassword: matchPwd,
+                                    username: user
+                                  }), 
                                 { 
                                     headers: { 'Content-type': 'application/json'},
                                     withCredentials: true
@@ -113,9 +132,42 @@ function Register() {
 
         <input
             type="text" 
+            name="nameLastname" 
+            id="nameLastName" 
+            ref={userRef} 
+            autoComplete="off" 
+            onChange={(e) => setNameLastName(e.target.value)} 
+            required
+            aria-invalid={validNameLastName ? "false" : "true"}
+            aria-describedby="uidname"
+            onFocus={() => setNameLastNameFocus(true)}
+            onBlur={() => setNameLastNameFocus(false)}
+        />
+
+            <label htmlFor="username" from="name" className="label-name">
+                <span className="content-name">Nombre y Apellido</span>
+                <span className={validNameLastName ? "valid" : "hide"}>
+                    <img className="svg" src="checkSVG.svg" alt="Nombre de usuario válido"></img>
+                </span>
+                <span className={validNameLastName || !nameLastName ? "hide" : "invalid"}>
+                    <img className="svg" src="errorSVG.svg" alt="Nombre de usuario inválido"></img>
+                </span>
+            </label>
+
+        </div>
+
+        <p id="uidname" className={nameLastNameFocus && nameLastName && !validNameLastName ? "instructions" : "offscreen"}>
+            Todas las palabras deben comenzar con una mayúscula. <br/>
+            Solo se admiten letras y espacios. <br/>
+            Debes escribir al menos dos nombres. <br/>
+        </p>
+
+        <div className="form">
+
+        <input
+            type="text" 
             name="name" 
             id="username" 
-            ref={userRef} 
             autoComplete="off" 
             onChange={(e) => setUser(e.target.value)} 
             required

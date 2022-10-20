@@ -1,19 +1,17 @@
 import { useRef, useState, useEffect, useContext } from 'react'
-import { Link } from "react-router-dom";
-import AuthContext from '../contexts/AuthProvider';
-
-import axios from '../api/axios';
-const LOGIN_URL = '/auth';
+import { Link, useNavigate } from "react-router-dom";
+import { GlobalContext } from '../contexts/GlobalContext';
+/* import AuthContext from '../contexts/AuthProvider'; */
 
 function Login() {
-  const { setAuth } = useContext(AuthContext);
+/*   const { setAuth } = useContext(AuthContext); */
+  const { loginHandle, errMsg } = useContext(GlobalContext);
   const userRef = useRef();
   const errRef = useRef();
 
   const [user, setUser] = useState('');
   const [pwd, setPwd] = useState('');
   
-  const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
@@ -21,50 +19,23 @@ function Login() {
   }, [])
 
   useEffect(() => {
-    setErrMsg('');
-  }, [user, pwd])
+/*     setErrMsg('');
+ */  }, [user, pwd])
+
+ useEffect(() => {
+  }, [errMsg])
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
-
-    try {
-      const response = await axios.post(LOGIN_URL, JSON.stringify({user, pwd}),
-        {
-          headers: { 'Content-Type': 'application/json'},
-          withCredentials: true
-        }
-      );
-      console.log(JSON.stringify(response?.data));
-
-      const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
-      setAuth({ user, pwd, roles, accessToken });
-      setUser('');
-      setPwd('');
-      setSuccess(true);
-
-    } catch (err) {
-
-      if (!err?.response) {
-        setErrMsg('No hubo respuesta del servidor')
-      } else if (err.response?.status === 400) {
-        setErrMsg('Por favor rellene todos los campos');
-      } else if (err.response?.status === 401) {
-        setErrMsg('Sin autorización')
-      } else {
-        setErrMsg('Ha ocurrido un error');
-      }
-      errRef.current.focus();
-    }
-
+    loginHandle(pwd, user);
   }
 
   return (
     <>
       {success ? (
-        <section>
-          <h1>You are logged in!</h1>
-        </section>
+        null
       ) : (
     <div className='main-login'>
         <h1>Palomo</h1>

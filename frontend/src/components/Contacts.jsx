@@ -1,14 +1,21 @@
-import { useState } from 'react'
-import { ChatContact } from './ChatContact'
+import { useContext, useEffect, useState } from 'react'
 import { HeaderBack } from './HeaderBack'
 import ClassNames from 'classnames'
+import { GlobalContext } from '../contexts/GlobalContext';
 import Modal from './Modal'
+import { ContactBook } from './ContactBook'
 
 function Contacts() {
 
     const [openModal, SetOpenModal] = useState(false);
+    const [userClicked, SetUserClicked] = useState('');
+    const { contacts } = useContext(GlobalContext);
 
-    const data = [
+    useEffect(() => {
+        console.log(userClicked)
+    }, [userClicked])
+
+    /* const data = [
         {
             id: 1,
             msj: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ut excepturi nihil modi. Blanditiis tempore eveniet ea soluta consectetur molestiae obcaecati similique id exercitationem modi non, accusamus natus eos assumenda?",
@@ -81,32 +88,29 @@ function Contacts() {
             icon: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg",
             user: "Maria"
         },
-     ]
+     ] */
 
 
   return (
     <div className='main'>
         <HeaderBack
             title = "Contactos"
-            subtitle = {`${data.length} contactos`}
+            subtitle = {`${contacts.length} contactos`}
         />
 
         <div className='main-contacts'>
 
-            { data.map( item => (
-                <button className={ClassNames('openModalBtn', 'Chat-contact')} onClick={() => {SetOpenModal(true)}}>
+            { contacts.map( item => (
+                <button className={ClassNames('openModalBtn', 'Chat-contact')} onClick={() => {SetOpenModal(true); SetUserClicked(item.id);}}>
 
-                    <ChatContact
-                        item={item} 
-                        key={item.id}
-                    />
+                    <ContactBook item={item} key={item.id}/>
 
                 </button>
             ))}
 
         </div>
 
-        {openModal && <Modal closeModal={SetOpenModal}/>}
+        {openModal && <Modal closeModal={SetOpenModal} userClicked={userClicked}/>}
 
     </div>
   )

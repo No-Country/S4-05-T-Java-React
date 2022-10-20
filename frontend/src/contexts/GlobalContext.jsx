@@ -123,8 +123,8 @@ function GlobalProvider({children}){
 
     const getUserData = async (id) => {
         const url = "https://chat-palomo.herokuapp.com/users/" + id
-
         await fetch(url, {
+
             method: "GET",
             modo: "cors",
             headers: {
@@ -172,10 +172,10 @@ function GlobalProvider({children}){
         });
     }
 
-    if(contacts === undefined){
+/*     if(contacts === undefined){
         console.log("get");
         getContacts(19)
-    }   
+    }  */
 
     const createChat = async (selcted) => {
         let type
@@ -224,16 +224,110 @@ function GlobalProvider({children}){
             }).catch((err) => {
                 console.log(err);
             }) 
-        }); 
+        });
+
+    }
+
+    const [errMsg, setErrMsg] = useState('');
+
+    const loginHandle = async (pwd, user) => { 
+        try {
+        const response =  await fetch("https://chat-palomo.herokuapp.com/auth/login", {
+          method: "POST",
+          modo: "cors",
+          headers: {
+              "Content-type": "application/json; charset=UTF-8",
+              /* 'Authorization': token */
+          },
+          body:JSON.stringify({
+              password: pwd,
+              usernameOrEmail: user
+              })
+      }
+          ) .then(resp => {
+  
+            resp.json()
+  
+            console.log(resp)
+  
+            if (resp.status == 404) {
+            console.log('soy el error 404')
+              setErrMsg('No hubo respuesta del servidor');
+            } else if (resp.status == 400) {
+            console.log('soy el error 400')
+              setErrMsg('El usuario o la contraseña son incorrectos');
+            } else if (resp.status == 401) {
+              console.log('soy el error 401')
+              setErrMsg('Sin autorización')
+            } else if (resp.status == 200) {
+                /* setUser(resp.user) */
+                getContacts(19)
+                navigate("/home");
+            } else {
+                console.log('soy el error')
+              setErrMsg('Ha ocurrido un error');
+            } 
+  
+          })
+  
+        /* console.log(token); */
+  
+/*         const accessToken = response?.data?.accessToken;
+        const roles = response?.data?.roles;
+        setAuth({ user, pwd, roles, accessToken }); */
+        /* setSuccess(true); */
+  
+      } catch (err) {
+  
+        if (!err?.response) {
+          return('No hubo respuesta del servidor')
+        } else if (err.response?.status === 400) {
+          return('El usuario o la contraseña son incorrectos');
+        } else if (err.response?.status === 401) {
+          return('Sin autorización')
+        } else {
+          return('Ha ocurrido un error');
+        }
+        /* errRef.current.focus(); */
+      }
+    }
+
+    const deleteContact = (username) => {
+
+        const url = "https://chat-palomo.herokuapp.com/users/" + user.id + "/remove/" + username
+
+        fetch(url, {
+            method: "DELETE",
+            modo: "cors",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "Access-Control-Allow-Origin": "*",
+                "Accept": "*/*"
+            }        
+        })
+        .then((response) => { 
+            response.json()
+                .then((data) => {
+                    console.log(data);
+                    setContacts(data)
+                })
+                    .catch((err) => {
+                        console.log(err);
+                    }) 
+        });
+
     }
 
     return(
         <GlobalContext.Provider value={{
             selected,
             contacts,
+            errMsg,
             select,
             getContacts,
             createChat,
+            loginHandle,
+            deleteContact,
             user,
             setUser
         }}>

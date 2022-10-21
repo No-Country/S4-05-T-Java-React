@@ -118,9 +118,11 @@ function GlobalProvider({children}){
         }
     }
 
-    const getUserData = async (id) => {
+    const getUserData = (id) => {
         const url = "https://chat-palomo.herokuapp.com/users/" + id
-        await fetch(url, {
+        let user
+
+        fetch(url, {
 
             method: "GET",
             modo: "cors",
@@ -131,22 +133,25 @@ function GlobalProvider({children}){
             }        
         })
         .then((response) => { 
-            response.json().then((data) => {
+            response.json()
+            .then((data) => {
                 console.log(data);
-                return data
-            }).catch((err) => {
+                user = data
+            })
+            .catch((err) => {
                 console.log(err);
             }) 
         });
 
+        return user
     }
     
-    if (user.id === 0) { 
-        getUserData(47);
-    }
+    // if (user.id === 0) { 
+    //     getUserData(47);
+    // }
 
     const getContacts = (id) => {
-        const url = "https://chat-palomo.herokuapp.com/users/" + id + "/contact"
+        const url = "https://chat-palomo.herokuapp.com/users/" + id + "/contacts"
 
         fetch(url, {
             method: "GET",
@@ -241,29 +246,34 @@ function GlobalProvider({children}){
                 usernameOrEmail: user
             })
         }) 
-        .then(resp => {  
-            resp.json()  
-            console.log(resp)
-
-            if (resp.status == 404) {
+        .then((response) => { 
+            
+            if (response.status == 404) {
                 console.log('soy el error 404')
                 setErrMsg('No hubo respuesta del servidor');
-            } else if (resp.status == 400) {
+            } else if (response.status == 400) {
                 console.log('soy el error 400')
                 setErrMsg('El usuario o la contraseña son incorrectos');
-            } else if (resp.status == 401) {
+            } else if (response.status == 401) {
                 console.log('soy el error 401')
                 setErrMsg('Sin autorización')
-            } else if (resp.status == 200) {
-                setUser(getUserData(47));
-                getContacts(47)
-                getChats(47)
-                navigate("/home");
             } else {
                 console.log('soy el error')
                 setErrMsg('Ha ocurrido un error');
-            } 
-        })
+            }   
+
+            response.json()            
+            
+        .then((data) => {
+                console.log(data);
+                setUser(getUserData(data.userId));
+                getContacts(data.userId)
+                getChats(data.userId)
+                navigate("/home");
+            }).catch((err) => {
+                console.log(err);
+            }) 
+        });
 
         /* console.log(token); */
 
@@ -315,40 +325,37 @@ function GlobalProvider({children}){
 
     const getChatContacts = (id) => {
 
-        console.log("Chat:" + id);
-        // const url = "https://chat-palomo.herokuapp.com/chat?page=0&userId=" + id.toString()
-
-        // fetch(url, {
-        //     method: "GET",
-        //     modo: "cors",
-        //     headers: {
-        //         "Content-type": "application/json; charset=UTF-8",
-        //         "Access-Control-Allow-Origin": "*",
-        //         "Accept": "*/*"
-        //     }        
-        // })
-        // .then((response) => { 
-        //     response.json()
-        //         .then((data) => {
-        //             console.log(data);
-                        // let us = []
-                        // for(let i = 0; i < data.users.length; i++){
-                        //     us.push(getUserData(data.users.userId))
-                        // }
-        //             setContactsChat(us)
-        //         })
-        //             .catch((err) => {
-        //                 console.log(err);
-        //             }) 
-        // });
-
-        
-    }
-
-    const getChats = (id) => {
-        const url = "https://chat-palomo.herokuapp.com/chat?page=0&userId=" + id.toString()
+        const url = "https://chat-palomo.herokuapp.com//chat/" + id.toString()
 
         fetch(url, {
+            method: "GET",
+            modo: "cors",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "Access-Control-Allow-Origin": "*",
+                "Accept": "*/*"
+            }        
+        })
+        .then((response) => { 
+            response.json()
+                .then((data) => {
+                    console.log(data);
+                        let us = []
+                        for(let i = 0; i < data.users.length; i++){
+                            us.push(getUserData(data.users.userId))
+                        }
+                    setContactsChat(us)
+                })
+                    .catch((err) => {
+                        console.log(err);
+                    }) 
+        });       
+    }
+
+    const getChats = async (id) => {
+        const url = "https://chat-palomo.herokuapp.com/chat?page=0&userId=" + id.toString()
+
+        await fetch(url, {
             method: "GET",
             modo: "cors",
             headers: {

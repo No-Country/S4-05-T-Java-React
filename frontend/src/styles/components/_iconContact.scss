@@ -1,0 +1,36 @@
+.icon-contact {
+    display: flex;
+    min-width: 4rem;
+    height: 5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    img {
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    h4 {
+        margin: 0;
+        font-weight: 500;
+        text-align: center;
+    }
+    &__delete {
+        background-color: $black;
+        width: 1.2rem;
+        height: 1.2rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        bottom: 1rem;
+        right: 0;
+        img {
+            width: 0.8rem;
+            height: 0.8rem;
+        }
+    }
+}

@@ -99,7 +99,7 @@ export const Home = () => {
             { data.map( item => (
                 <ChatContact item={item} key={item.id}/>
             ))}
-            <ButtonChat/>
+            <ButtonChat src='msg.png'/>
         </div>
     </>
     

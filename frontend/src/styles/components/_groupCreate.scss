@@ -1,0 +1,12 @@
+.group-create {
+    &__list {
+        display: flex;
+        padding: 0.5rem 1rem;
+        overflow: auto;
+        border-bottom: 2px solid #EDEDED;
+    }
+    &__contacts {
+        height: calc(100vh - 160px);
+        overflow: auto;
+    }
+}

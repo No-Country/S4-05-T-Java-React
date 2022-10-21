@@ -8,6 +8,9 @@
     background-color: $black;
     cursor: pointer;
     transition: .3s transform ease-in;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     img {
         width: 1.5rem;
         height: 1.5rem;

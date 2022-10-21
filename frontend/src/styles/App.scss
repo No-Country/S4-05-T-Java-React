@@ -11,8 +11,9 @@
 @import './components/sendMsj';
 @import './components/inputChat';
 @import './components/login';
-
-*{
-  box-sizing: border-box;
-  text-align: center;
+@import './components/groupCreate';
+@import './components/iconContact';
+* {
+    box-sizing: border-box;
+    //text-align: center;
 }

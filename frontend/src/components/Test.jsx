@@ -11,8 +11,8 @@ export const Test = () => {
   return (
     <>
       
-         {/* <Header data={data}/>*/}
-        <HeaderBack title="Elegir contacto" subtitle="5 contactos"/>
+         <Header data={data}/>
+        {/*<HeaderBack title="Elegir contacto" subtitle="5 contactos"/>*/}
         
     </>
   )

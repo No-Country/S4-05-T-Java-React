@@ -7,6 +7,7 @@ import { Test } from './components/Test';
 import Perfil from './components/Perfil';
 import Config from './components/Config';
 import Chat from './components/Chat';
+import { GroupCreate } from './components/GroupCreate';
 
 function App() {
     return (
@@ -15,13 +16,13 @@ function App() {
             <Routes>
               <Route path="/" element={ <Login />} />
               <Route path="/registration" element={ <Register/> } />
-              <Route path="/home" element={""} />
+              <Route path="/home" element={<Home/>} />
               <Route path="/chat:id" element={<Chat />} />
               <Route path="/perfil:id" element={ <Perfil /> } />
               <Route path="/config" element={ <Config /> } />
               <Route path="/selectContact" element={""} />
               <Route path="/contacts" element={""} />
-              <Route path="/newGroup" element={""} />
+              <Route path="/newGroup" element={<GroupCreate/>} />
               <Route path="/addContact" element={""} />
               <Route path="/test" element={<Test/>} />
             </Routes>

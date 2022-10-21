@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const ButtonChat = () => {
+export const ButtonChat = ({src}) => {
   return (
     <button className='button-chat'>
-        <img src="/msg.png" alt="msg" />
+        <img src={src} alt="msg" />
     </button>
   )
 }

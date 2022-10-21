@@ -118,11 +118,10 @@ function GlobalProvider({children}){
         }
     }
 
-    const getUserData = (id) => {
+    const getUserDataLogin = async (id) => {
         const url = "https://chat-palomo.herokuapp.com/users/" + id
-        let user
 
-        fetch(url, {
+        const resp = await fetch(url, {
 
             method: "GET",
             modo: "cors",
@@ -132,7 +131,32 @@ function GlobalProvider({children}){
                 "Accept": "*/*"
             }        
         })
-        .then((response) => { 
+
+        const data = await resp.json()
+        setUser(data)
+        return data
+    }
+
+    
+
+    const getUserData = async (id) => {
+        const url = "https://chat-palomo.herokuapp.com/users/" + id
+        let user
+
+        const resp = await fetch(url, {
+
+            method: "GET",
+            modo: "cors",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "Access-Control-Allow-Origin": "*",
+                "Accept": "*/*"
+            }        
+        })
+
+        const data = await resp.json()
+        return data
+        /*.then((response) => { 
             response.json()
             .then((data) => {
                 console.log(data);
@@ -143,17 +167,18 @@ function GlobalProvider({children}){
             }) 
         });
 
-        return user
+        return user*/
     }
     
     // if (user.id === 0) { 
     //     getUserData(47);
     // }
 
-    const getContacts = (id) => {
+    const getContacts = async (id) => {
+        console.log(id);
         const url = "https://chat-palomo.herokuapp.com/users/" + id + "/contacts"
 
-        fetch(url, {
+        const resp = await fetch(url, {
             method: "GET",
             modo: "cors",
             headers: {
@@ -162,7 +187,7 @@ function GlobalProvider({children}){
                 "Accept": "*/*"
             }        
         })
-        .then((response) => { 
+        /*.then((response) => { 
             response.json()
                 .then((data) => {
                     console.log(data);
@@ -171,7 +196,13 @@ function GlobalProvider({children}){
                     .catch((err) => {
                         console.log(err);
                     }) 
-        });
+        });*/
+
+        const data = await resp.json()
+        console.log(data);
+        setContacts(data)
+
+        return data
     }
 
 /*     if(contacts === undefined){
@@ -264,12 +295,13 @@ function GlobalProvider({children}){
 
             response.json()            
             
-        .then((data) => {
+        .then(async (data) => {
                 console.log(data);
                 setUser(getUserData(data.userId));
                 getContacts(data.userId)
                 getChats(data.userId)
                 navigate("/home");
+                localStorage.setItem("id",data.userId )
             }).catch((err) => {
                 console.log(err);
             }) 
@@ -325,7 +357,7 @@ function GlobalProvider({children}){
 
     const getChatContacts = (id) => {
 
-        const url = "https://chat-palomo.herokuapp.com//chat/" + id.toString()
+        const url = "https://chat-palomo.herokuapp.com/chat/" + id.toString()
 
         fetch(url, {
             method: "GET",
@@ -355,7 +387,9 @@ function GlobalProvider({children}){
     const getChats = async (id) => {
         const url = "https://chat-palomo.herokuapp.com/chat?page=0&userId=" + id.toString()
 
-        await fetch(url, {
+        let dataChats
+
+        let resp = await fetch(url, {
             method: "GET",
             modo: "cors",
             headers: {
@@ -364,16 +398,12 @@ function GlobalProvider({children}){
                 "Accept": "*/*"
             }        
         })
-        .then((response) => { 
-            response.json()
-                .then((data) => {
-                    console.log(data);
-                    setChats(data)
-                })
-                    .catch((err) => {
-                        console.log(err);
-                    }) 
-        });
+       const data =  await resp.json()
+
+       console.log(data );
+       setChats(data)
+       return  data
+
     }
 
     return(
@@ -390,7 +420,10 @@ function GlobalProvider({children}){
             loginHandle,
             deleteContact,
             setUser,
-            getChatContacts
+            getChatContacts,
+            getChats,
+            getUserData,
+            getUserDataLogin
         }}>
             {children}
         </GlobalContext.Provider>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ButtonChat } from './ButtonChat'
 import { ChatContact } from './ChatContact'
 import {Header} from './Header'
@@ -9,11 +9,39 @@ import { useEffect } from 'react'
 
 export const Home = () => {
 
-    const {chats} = useContext(GlobalContext)
+    const {getChats, chats, getUserData} = useContext(GlobalContext)
+
+    const [users, setUsers] = useState([])
 
     useEffect(() => {
+        (async () => {
+            const id = localStorage.getItem('id')
+            console.log(id)
+            const data = await getChats(id)
+            console.log(data);
+            if(data){
 
-    }, [chats])
+                const chatUsers = []
+
+                for (const user of data) {
+                    for (const chat of user.users) {
+                        /*console.log('chat', chat);
+                        console.log('id', id);*/
+                        if(chat.userId !== Number(id)){
+                            console.log(chat);
+                            const userData = await getUserData(chat.userId)
+                            userData.chatId = user.id
+                            console.log(userData);
+
+                            chatUsers.push(userData)
+                        }
+                    }
+                }
+
+                setUsers(chatUsers)
+            }
+        })();
+    }, [])
     // const data = [
     //     {
     //         id: 1,
@@ -105,11 +133,11 @@ export const Home = () => {
         <>
             <Header/>
             <div className='home'>
-                {chats.length === 0
+                {users.length === 0
                 ?
                     <h3>No tienes ningun chat para mostrar</h3>
                 :
-                    chats.map( item => (
+                    users.map( item => (
                         <ChatContact item={item} key={item.id}/>
                     ))
                 }

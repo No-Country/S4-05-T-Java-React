@@ -15,13 +15,13 @@ export const ChatContact = ({ item }) => {
   }
 
   return (
-    <div className="Chat-contact" onClick={() => chat(item.id)}>
+    <div className="Chat-contact" onClick={() => chat(item.chatId)}>
         <div className="Chat-contact__logo">
-            <img src={ item.icon } alt='icon'/>
+            <img src={ item.picture } alt='icon'/>
         </div>
         <div className="Chat-contact__data">
-            <h4>{ item.user }</h4>
-            <h5>{ item.msj }</h5>
+            <h4>{ item.name }</h4>
+            <h5>{ item.description }</h5>
         </div>
         <div className="Chat-contact__time">
             <h5>{ item.timestamp }</h5>

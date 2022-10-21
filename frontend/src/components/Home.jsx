@@ -1,19 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ButtonChat } from './ButtonChat'
 import { ChatContact } from './ChatContact'
 import {Header} from './Header'
-import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { GlobalContext } from '../contexts/GlobalContext'
 import { useEffect } from 'react'
 
 export const Home = () => {
 
-    const {chats} = useContext(GlobalContext)
+    const {chats, contacts, user, getChatContacts} = useContext(GlobalContext)
+
+    const [contactsID, setContactsId] = useState([])
 
     useEffect(() => {
+    }, [chats, contactsID])
 
-    }, [chats])
     // const data = [
     //     {
     //         id: 1,
@@ -100,7 +101,7 @@ export const Home = () => {
     //         user: "Maria"
     //     },
     // ]
-
+    console.log(user);
     return (
         <>
             <Header/>
@@ -109,9 +110,11 @@ export const Home = () => {
                 ?
                     <h3>No tienes ningun chat para mostrar</h3>
                 :
-                    chats.map( item => (
-                        <ChatContact item={item} key={item.id}/>
-                    ))
+                    chats.map((chat) => {
+                        return(
+                            <ChatContact id={chat.id} key={chat.id}/>
+                        )
+                    })
                 }
                 <ButtonChat/>
             </div>

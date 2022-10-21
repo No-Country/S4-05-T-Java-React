@@ -9,11 +9,22 @@ function Contacts() {
 
     const [openModal, SetOpenModal] = useState(false);
     const [userClicked, SetUserClicked] = useState('');
-    const { contacts } = useContext(GlobalContext);
+    const { contacts, getContacts } = useContext(GlobalContext);
 
     useEffect(() => {
         console.log(userClicked)
     }, [userClicked])
+
+    //const [contactData, setContactData] = useState(second)
+
+    useEffect(() => {
+        (async () => {
+            const id = localStorage.getItem('id')
+            await getContacts(id)
+            
+        })();
+    }, [])
+    
 
     /* const data = [
         {
@@ -93,14 +104,14 @@ function Contacts() {
 
   return (
     <div className='main'>
-        <HeaderBack
+       { contacts && <HeaderBack
             title = "Contactos"
             subtitle = {`${contacts.length} contactos`}
-        />
+        /> }
 
         <div className='main-contacts'>
 
-            { contacts.map( item => (
+            { contacts && contacts.map( item => (
                 <button className={ClassNames('openModalBtn', 'Chat-contact')} onClick={() => {SetOpenModal(true); SetUserClicked(item.id);}}>
 
                     <ContactBook item={item} key={item.id}/>

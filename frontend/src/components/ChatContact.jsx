@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { GlobalContext } from '../contexts/GlobalContext'
 
-export const ChatContact = ({ props }) => {
+export const ChatContact = ({ item }) => {
 
   const navigate = useNavigate()
 
@@ -18,24 +18,21 @@ export const ChatContact = ({ props }) => {
     navigate("/chat:" + id.toString())
   }
 
-  if(!contactGeted){
-    setContact(getUserData(props.id))
-    setContactGeted(true)
-  }
-  console.log(props);
-
   useEffect(() => {
       console.log(contact);
   }, [contact])
 
   return (
-    <div className="Chat-contact" onClick={() => chat(props.id)}>
+    <div className="Chat-contact" onClick={() => chat(item.chatId)}>
         <div className="Chat-contact__logo">
-            <img src={ contact.picture } alt='icon'/>
+            <img src={ item.picture } alt='icon'/>
         </div>
         <div className="Chat-contact__data">
-            <h4>{ contact.username }</h4>
-            <h5>{ contact.description }</h5>
+            <h4>{ item.name }</h4>
+            <h5>{ item.description }</h5>
+        </div>
+        <div className="Chat-contact__time">
+            <h5>{ item.timestamp }</h5>
         </div>
     </div>
 

@@ -5,13 +5,13 @@ import { GlobalContext } from "../contexts/GlobalContext";
 
 function ReciveMsj(props) {
 
-    const {chatContacts} = useContext(GlobalContext)
+    const {contactsChat} = useContext(GlobalContext)
 
     const [sender, setSender] = useState("")
 
-    for(let i = 0; i < chatContacts.length; i++){
-        if(props.sender === chatContacts[i].id){
-            setSender(chatContacts[i].username)
+    for(let i = 0; i < contactsChat.length; i++){
+        if(props.sender === contactsChat[i].id){
+            setSender(contactsChat[i].username)
         }
     }
 

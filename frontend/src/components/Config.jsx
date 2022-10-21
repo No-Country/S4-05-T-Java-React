@@ -1,11 +1,21 @@
 import { NavLink } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../contexts/GlobalContext";
 import { HeaderBack } from "./HeaderBack";
 
 const Config = () => {
 
-    const {user} = useContext(GlobalContext)
+    const {user, getUserDataLogin } = useContext(GlobalContext)
+
+    useEffect(() => {
+        (async () => {
+            const id = localStorage.getItem('id')
+          
+             await getUserDataLogin(id)
+                        
+        })();
+    }, [user])
+    
 
     const [setDarkMode, setSetDarkMode] = useState(false)
 
@@ -14,13 +24,13 @@ const Config = () => {
             <HeaderBack title={'Configuración'} />
 
             <div className="config">
-                <NavLink to={'/perfil:id'} className='configLink'>
+                {user && <NavLink to={'/perfil'} className='configLink'>
                     <img className="configUserImg" src={user.picture} alt="Foto perfil" />
                     <div className="configUser">
                         <h4>{user.name}</h4>
                         <p>{user.email}</p>
                     </div>
-                </NavLink>
+                </NavLink>}
                 <div className="configOptions">
                     <div className="configDiv">
                         {setDarkMode

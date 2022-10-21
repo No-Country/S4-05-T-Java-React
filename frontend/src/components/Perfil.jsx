@@ -1,11 +1,21 @@
 import { HeaderBack } from "./HeaderBack";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../contexts/GlobalContext";
 
 const Perfil = () => {
 
-    const { user, setUser } = useContext(GlobalContext)
+    const { user, setUser, getUserDataLogin } = useContext(GlobalContext)
     const [userImg, setUserImg] = useState(null)
+
+
+    useEffect(() => {
+        (async () => {
+            const id = localStorage.getItem('id')
+          
+            await getUserDataLogin(id)
+            
+        })();
+    }, [user])
 
     const uploadImg = (e) => {
         // let img;
@@ -30,7 +40,7 @@ return (
     <>
         <HeaderBack title={'Perfil'} />
 
-        <div className="perfilBody">
+        {user  && <div className="perfilBody">
             <div className="perfilUserImgCont">
                 <img className="perfilUserImg" src={user.picture} alt="Foto perfil" />
                 <label className="perfilBtnImg">
@@ -44,7 +54,7 @@ return (
                 <input className="perfilFormInput" type="number" name="phone" onChange={handleOnChangeInputPerfil} placeholder={user.id} />
                 <button className="perfilBtnSave">Guardar</button>
             </form>
-        </div>
+        </div>}
     </>
 );
 }

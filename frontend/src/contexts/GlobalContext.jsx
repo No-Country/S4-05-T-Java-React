@@ -282,16 +282,19 @@ function GlobalProvider({children}){
             if (response.status == 404) {
                 console.log('soy el error 404')
                 setErrMsg('No hubo respuesta del servidor');
+                return;
             } else if (response.status == 400) {
                 console.log('soy el error 400')
                 setErrMsg('El usuario o la contraseña son incorrectos');
+                return;
             } else if (response.status == 401) {
                 console.log('soy el error 401')
                 setErrMsg('Sin autorización')
+                return;
             } else {
                 console.log('soy el error')
                 setErrMsg('Ha ocurrido un error');
-            }   
+            }
 
             response.json()            
             
@@ -400,9 +403,61 @@ function GlobalProvider({children}){
         })
        const data =  await resp.json()
 
-       console.log(data );
-       setChats(data)
-       return  data
+       console.log(data);
+       setChats(data);
+       return  data;
+
+    }
+
+    const addContact = async (id, contact) => {
+
+        try {
+
+            const url = "https://chat-palomo.herokuapp.com/users/" + id + "/add/" + contact
+
+            await fetch(url, {
+                method: "POST",
+                modo: "cors",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Accept": "*/*"
+                }
+            });
+
+            return true;
+
+        } catch (error) {
+            setErrMsgUser('Algo ha salido mal')
+        }
+
+    }
+
+    const [errMsgUser, setErrMsgUser] = useState('');
+
+    const getUserByName = async (username) => {
+
+        try{
+
+            const url = "https://chat-palomo.herokuapp.com/users/username/" + username
+    
+            const resp = await fetch(url, {
+    
+                method: "GET",
+                modo: "cors",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Accept": "*/*"
+                }       
+            })
+    
+            const data = await resp.json();
+            return data;
+
+        } catch (error) {
+            setErrMsgUser('Usuario no encontrado')
+        }
 
     }
 
@@ -414,6 +469,7 @@ function GlobalProvider({children}){
             chats,
             user,
             contactsChat,
+            errMsgUser,
             select,
             getContacts,
             createChat,
@@ -423,7 +479,10 @@ function GlobalProvider({children}){
             getChatContacts,
             getChats,
             getUserData,
-            getUserDataLogin
+            getUserDataLogin,
+            addContact,
+            setErrMsgUser,
+            getUserByName
         }}>
             {children}
         </GlobalContext.Provider>

@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { Link } from "react-router-dom";
 import { GlobalContext } from '../contexts/GlobalContext';
 
 function Modal({ closeModal, userClicked }) {
@@ -6,9 +7,7 @@ function Modal({ closeModal, userClicked }) {
     const { deleteContact } = useContext(GlobalContext);
 
     const deleteHandle = () => {
-        console.log(userClicked + 'antes')
         deleteContact(userClicked);
-        console.log(userClicked + 'despues')
     }
 
   return (
@@ -24,7 +23,7 @@ function Modal({ closeModal, userClicked }) {
             </div>
 
             <div className='modelBody'>
-                <button>Ver más</button>
+                <Link to={`/ProfileContact:${userClicked}`}><button>Ver más</button></Link>
                 <button onClick={ deleteHandle }>
                     <p>
                         Eliminar Contacto

@@ -1,20 +1,28 @@
 import { HeaderBack } from "./HeaderBack";
 import { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../contexts/GlobalContext";
+import { useParams } from "react-router-dom";
 import ClassNames from 'classnames'
 
 const Perfil = () => {
 
-    const { user, setUser, getUserDataLogin } = useContext(GlobalContext)
+    const { id } = useParams()
+
+    const { getUserData } = useContext(GlobalContext)
+
+    const[user, setUser] = useState('');
 
     useEffect(() => {
         (async () => {
-            const id = localStorage.getItem('id')
           
-            await getUserDataLogin(id)
-            
+            const dataUser = await getUserData(id);
+            setUser(dataUser);
+
         })();
-    }, [user])
+    });
+
+    /* const { user, setUser, getUserDataLogin } = useContext(GlobalContext) */
+
 
 return (
     <>

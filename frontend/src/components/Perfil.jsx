@@ -7,7 +7,6 @@ const Perfil = () => {
     const { user, setUser, getUserDataLogin } = useContext(GlobalContext)
     const [userImg, setUserImg] = useState(null)
 
-
     useEffect(() => {
         (async () => {
             const id = localStorage.getItem('id')

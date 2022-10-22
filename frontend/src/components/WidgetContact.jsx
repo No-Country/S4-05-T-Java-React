@@ -11,7 +11,7 @@ function WidgetContact(props) {
     return(
         <div className="widgetContact">
             <div className="widgetContact__div" id={`${props.name}-${props.id}-Widget`}>
-                <img className="widgetContact__img" src={props.img} />
+                <img className="widgetContact__img" src={props.picture} />
                 <div className="widgetContact__x" onClick={() => select(`${props.name}-${props.id}`)}><p>×</p></div>
                 <h4 className="widgetContact__name">{props.name}</h4>
             </div>

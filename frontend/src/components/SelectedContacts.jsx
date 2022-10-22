@@ -22,7 +22,7 @@ function SelectedContacts() {
                         <WidgetContact 
                             key = {contact.id} 
                             id = {contact.id}
-                            img = {contact.img}
+                            picture = {contact.picture}
                             name = {contact.name}
                         />
                     )

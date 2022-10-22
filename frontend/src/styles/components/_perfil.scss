@@ -12,6 +12,8 @@
 .perfilUserImgCont {
     display: flex;
     margin: 5rem;
+    width: 10rem;
+    height: 10rem;
 
     @include media-up("tablet") {
         margin: 2rem;
@@ -19,12 +21,11 @@
 }
 
 .perfilUserImg {
-    margin-top: 2rem;
-    width: 10rem;
-    height: 10rem;
+    height: 100%;
+    width: 100%;
+    object-fit:cover;
+    object-position:center;
     border-radius: 50%;
-
-
 }
 
 .perfilBtnImg {
@@ -52,6 +53,9 @@
     }
 }
 
+.pointerEvents{
+    pointer-events: none;
+}
 
 
 .perfilForm {

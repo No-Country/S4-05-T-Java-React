@@ -58,7 +58,7 @@ function GlobalProvider({children}){
         for(let i = 0; i < contacts.length; i++){
             console.log("2°:", contacts[i].id, id.split('-')[1], i)
             if(contacts[i].id == id.split('-')[1]){
-                let con = {id: contacts[i].id, name: contacts[i].name, img: contacts[i].img}
+                let con = {id: contacts[i].id, name: contacts[i].name, picture: contacts[i].picture}
                 aux.push(con)
                 console.log(aux);
                 div.style.backgroundColor = "#EBEEFF"
@@ -160,7 +160,8 @@ function GlobalProvider({children}){
 
     const createChat = async (selcted) => {
         let type
-        let us = [{userId: user.id}]
+        const idUserLoged = localStorage.getItem("id")
+        let us = [{userId: idUserLoged}]
         let body
 
         if(selected.length > 1){
@@ -201,10 +202,11 @@ function GlobalProvider({children}){
             response.json().then((data) => {
                 console.log(data);
                 setChatId(data.id)
-                navigate('/chat:' + data.id.toString())
+                navigate('/chat/' + data.id.toString())
             }).catch((err) => {
                 console.log(err);
-            })
+                setErrMsg("Ya existe un chat")
+            }) 
         });
 
     }
@@ -232,9 +234,11 @@ function GlobalProvider({children}){
             if (response.status == 404) {
                 console.log('soy el error 404')
                 setErrMsg('No hubo respuesta del servidor');
+                return;
             } else if (response.status == 400) {
                 console.log('soy el error 400')
                 setErrMsg('El usuario o la contraseña son incorrectos');
+                return;
             } else if (response.status == 401) {
                 console.log('soy el error 401')
                 setErrMsg('Sin autorización')
@@ -362,9 +366,63 @@ function GlobalProvider({children}){
         })
        const data =  await resp.json()
 
-       console.log(data );
-       setChats(data)
-       return  data
+       console.log(data);
+       setChats(data);
+       return  data;
+
+    }
+
+    const addContact = async (id, contact) => {
+
+        try {
+
+            const url = "https://chat-palomo.herokuapp.com/users/" + id + "/add/" + contact
+
+            const resp = await fetch(url, {
+                method: "POST",
+                modo: "cors",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Accept": "*/*"
+                }
+            });
+
+            const data = await resp.json()
+
+            return data;
+
+        } catch (error) {
+            setErrMsgUser('Algo ha salido mal')
+        }
+
+    }
+
+    const [errMsgUser, setErrMsgUser] = useState('');
+
+    const getUserByName = async (username) => {
+
+        try{
+
+            const url = "https://chat-palomo.herokuapp.com/users/username/" + username
+    
+            const resp = await fetch(url, {
+    
+                method: "GET",
+                modo: "cors",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Accept": "*/*"
+                }       
+            })
+    
+            const data = await resp.json();
+            return data;
+
+        } catch (error) {
+            setErrMsgUser('Usuario no encontrado')
+        }
 
     }
 
@@ -376,6 +434,7 @@ function GlobalProvider({children}){
             chats,
             user,
             contactsChat,
+            errMsgUser,
             select,
             getContacts,
             createChat,
@@ -385,7 +444,10 @@ function GlobalProvider({children}){
             getChatContacts,
             getChats,
             getUserData,
-            getUserDataLogin
+            getUserDataLogin,
+            addContact,
+            setErrMsgUser,
+            getUserByName
         }}>
             {children}
         </GlobalContext.Provider>

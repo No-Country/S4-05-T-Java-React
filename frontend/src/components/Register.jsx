@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import axios from '../api/axios';
+import { useNavigate } from "react-router-dom";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -8,12 +9,14 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 const NAME_REGEX = /^[A-Z][a-z]+\s[A-Z][a-z]+$/;
 
-const REGISTER_URL = '/auth/signup';
+const REGISTER_URL = 'https://chat-palomo.herokuapp.com/auth/signup';
 
 function Register() {
 
     const userRef = useRef();
     const errRef = useRef();
+
+    const navigate = useNavigate()
 
     const [user, setUser] = useState('');
     const [validName, setValidName] = useState(false);
@@ -81,24 +84,36 @@ function Register() {
 
         try {
             const response = 
-            await axios.post(REGISTER_URL,
-                                JSON.stringify({
-                                    email: email,
-                                    name: nameLastName,
-                                    password: pwd,
-                                    picture: "/profileDefaultPicture.png",
-                                    repeatPassword: matchPwd,
-                                    username: user
-                                  }), 
+            await fetch(REGISTER_URL,
+                                
                                 { 
-                                    headers: { 'Content-type': 'application/json'},
-                                    withCredentials: true
+                                    method: "POST",
+                                    modo: "cors",
+                                    headers: {
+                                        "Content-type": "application/json; charset=UTF-8",
+                                        /* 'Authorization': token */
+                                    },
+                                    body: JSON.stringify({
+                                        email: email,
+                                        name: nameLastName,
+                                        password: pwd,
+                                        picture: "https://pbs.twimg.com/profile_images/1301576577076146176/dvHdYC6b_400x400.jpg",
+                                        repeatPassword: matchPwd,
+                                        username: user,
+                                        description: "Sin descripción"
+                                      }), 
                                 }
                             );
-                            console.log(response.data);
-                            console.log(response.accessToken);
-                            console.log(JSON.stringify(response));
-                            setSuccess(true);
+                            const data = await response.json()
+                           console.log(data);
+                          
+                            if(data.id){
+                                setSuccess(true);
+                                navigate("/");
+                            }else{
+                                setErrMsg('No hubo respuesta del servidor');
+                            }
+                           
         } catch (err) {
             if(!err?.response) {
                 setErrMsg('No hubo respuesta del servidor');

@@ -15,7 +15,7 @@ export const ChatContact = ({ item }) => {
 
   const chat = (id) => {
     getChatContacts(id)
-    navigate("/chat:" + id.toString())
+    navigate("/chat/" + id.toString())
   }
 
   useEffect(() => {

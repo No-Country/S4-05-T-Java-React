@@ -25,13 +25,14 @@ export const Header = ({ data }) => {
         <h3>{data.user}</h3>
       </div>}
       <div className="header__icons">
-        {!data && <img src='/add_nav.png' alt="Icono de añadir"/>}
+        {!data && <Link to="/addContact"><img src='/add_nav.png' alt="Icono de añadir"/></Link>}
         <img src='/options_nav.png' onClick={showOptions} alt="Icono de opciones"/>
       </div>
       <div className="header__options" style={ optionsShow ?{ 'display': 'block', 'opacity': 1 } :  { 'display': 'none', 'opacity': 0 }}>
         <ul>
           <Link to="/contacts"><li>Ver Contactos</li></Link>
           <Link to="/config"><li>Configuración</li></Link>
+          <Link to="/"><li>Cerrar sesión</li></Link>
         </ul>
       </div>
       <div className="header__search" style={ searchShow ?{ 'display': 'block', 'opacity': 1 } :  { 'display': 'none', 'opacity': 0 }}>

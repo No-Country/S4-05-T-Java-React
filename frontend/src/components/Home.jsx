@@ -11,7 +11,7 @@ export const Home = () => {
 
     const {getChats, chats, getUserData} = useContext(GlobalContext)
 
-    const [users, setUsers] = useState([])
+    const [users, setUsers] = useState(null)
 
     const imagen = require.context('./../img', true);
 
@@ -44,102 +44,19 @@ export const Home = () => {
             }
         })();
     }, [])
-    // const data = [
-    //     {
-    //         id: 1,
-    //         timestamp: "10:05pm",
-    //         msj: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ut excepturi nihil modi. Blanditiis tempore eveniet ea soluta consectetur molestiae obcaecati similique id exercitationem modi non, accusamus natus eos assumenda?",
-    //         icon: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg",
-    //         user: "Oswaldo"
-    //     },
-    //     {
-    //         id: 2,
-    //         timestamp: "9:05pm",
-    //         msj: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ut excepturi nihil modi. Blanditiis tempore eveniet ea soluta consectetur molestiae obcaecati similique id exercitationem modi non, accusamus natus eos assumenda?",
-    //         icon: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg",
-    //         user: "Jose Martinez"
-    //     },
-    //     {
-    //         id: 3,
-    //         timestamp: "8:05pm",
-    //         msj: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ut excepturi nihil modi. Blanditiis tempore eveniet ea soluta consectetur molestiae obcaecati similique id exercitationem modi non, accusamus natus eos assumenda?",
-    //         icon: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg",
-    //         user: "Victor Hugo"
-    //     },
-    //     {
-    //         id: 4,
-    //         timestamp: "7:05pm",
-    //         msj: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ut excepturi nihil modi. Blanditiis tempore eveniet ea soluta consectetur molestiae obcaecati similique id exercitationem modi non, accusamus natus eos assumenda?",
-    //         icon: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg",
-    //         user: "Jualian"
-    //     },
-    //     {
-    //         id: 5,
-    //         timestamp: "6:05pm",
-    //         msj: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ut excepturi nihil modi. Blanditiis tempore eveniet ea soluta consectetur molestiae obcaecati similique id exercitationem modi non, accusamus natus eos assumenda?",
-    //         icon: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg",
-    //         user: "Marta"
-    //     },
-    //     {
-    //         id: 6,
-    //         timestamp: "5:05pm",
-    //         msj: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ut excepturi nihil modi. Blanditiis tempore eveniet ea soluta consectetur molestiae obcaecati similique id exercitationem modi non, accusamus natus eos assumenda?",
-    //         icon: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg",
-    //         user: "Maria"
-    //     },
-    //     {
-    //         id: 7,
-    //         timestamp: "10:05pm",
-    //         msj: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ut excepturi nihil modi. Blanditiis tempore eveniet ea soluta consectetur molestiae obcaecati similique id exercitationem modi non, accusamus natus eos assumenda?",
-    //         icon: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg",
-    //         user: "Oswaldo"
-    //     },
-    //     {
-    //         id: 8,
-    //         timestamp: "9:05pm",
-    //         msj: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ut excepturi nihil modi. Blanditiis tempore eveniet ea soluta consectetur molestiae obcaecati similique id exercitationem modi non, accusamus natus eos assumenda?",
-    //         icon: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg",
-    //         user: "Jose Martinez"
-    //     },
-    //     {
-    //         id: 9,
-    //         timestamp: "8:05pm",
-    //         msj: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ut excepturi nihil modi. Blanditiis tempore eveniet ea soluta consectetur molestiae obcaecati similique id exercitationem modi non, accusamus natus eos assumenda?",
-    //         icon: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg",
-    //         user: "Victor Hugo"
-    //     },
-    //     {
-    //         id: 10,
-    //         timestamp: "7:05pm",
-    //         msj: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ut excepturi nihil modi. Blanditiis tempore eveniet ea soluta consectetur molestiae obcaecati similique id exercitationem modi non, accusamus natus eos assumenda?",
-    //         icon: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg",
-    //         user: "Jualian"
-    //     },
-    //     {
-    //         id: 11,
-    //         timestamp: "6:05pm",
-    //         msj: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ut excepturi nihil modi. Blanditiis tempore eveniet ea soluta consectetur molestiae obcaecati similique id exercitationem modi non, accusamus natus eos assumenda?",
-    //         icon: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg",
-    //         user: "Marta"
-    //     },
-    //     {
-    //         id: 12,
-    //         timestamp: "5:05pm",
-    //         msj: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ut excepturi nihil modi. Blanditiis tempore eveniet ea soluta consectetur molestiae obcaecati similique id exercitationem modi non, accusamus natus eos assumenda?",
-    //         icon: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg",
-    //         user: "Maria"
-    //     },
-    // ]
+
 
     return (
         <>
             <Header/>
             <div className='home'>
-                {users.length === 0
+                {!users
                 ?
                 <div className="selectContacts__loading">
                 <img src={imagen("./loading.gif")} alt=""/>
             </div>
+                : users.length === 0 ?
+                <h3>No tienes ningun chat para mostrar</h3>
                 :
                     users.map( item => (
                         <ChatContact item={item} key={item.id}/>

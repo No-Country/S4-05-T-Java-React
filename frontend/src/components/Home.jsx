@@ -54,6 +54,7 @@ export const Home = () => {
                 ?
                 <div className="selectContacts__loading">
                 <img src={imagen("./loading.gif")} alt=""/>
+                <div className='home__img'></div>
             </div>
                 : users.length === 0 ?
                 <h3>No tienes ningun chat para mostrar</h3>
@@ -62,6 +63,7 @@ export const Home = () => {
                         <ChatContact item={item} key={item.id}/>
                     ))
                 }
+                <div className='home__img'></div>
                 <ButtonChat/>
             </div>
         </>

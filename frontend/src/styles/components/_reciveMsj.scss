@@ -1,7 +1,8 @@
 
 .reciveMsj {
     display: flex;
-    width: 85%;
+    width: auto;
+    min-width: 10rem;
     align-self: flex-start;
 
     &__main {
@@ -30,9 +31,9 @@
     &__time {
         color: gray;
         height: 1rem;
-        font-size: 0.8rem;
+        font-size: 0.6rem;
         align-self: flex-end;
-        margin: 0 0.5rem 0.2rem 0;
+        margin: 0.25rem 0.5rem 0.2rem 0;
     }
 
     &__arrow {
@@ -42,5 +43,6 @@
         position: relative;
         left: 5px;
         margin-left: 0.5rem;
+        z-index: 5;
     }
 }

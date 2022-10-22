@@ -12,7 +12,7 @@ function Contacts() {
     const { contacts, getContacts } = useContext(GlobalContext);
 
     useEffect(() => {
-        console.log(userClicked)
+        console.log(userClicked + "usuario clickeado")
     }, [userClicked])
 
     //const [contactData, setContactData] = useState(second)

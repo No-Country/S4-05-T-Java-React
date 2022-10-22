@@ -1,0 +1,121 @@
+.form-add-contact{
+    width: 80%;
+    margin: 100px auto 0 auto;
+}
+
+.main-add{
+    height: 100vh;
+    background-color: rgb(250, 250, 250);
+}
+
+.button-search{
+    background-color: $mediumPurple;
+    font-size: 16px;
+    font-weight: 400;
+    border:none;
+    width: 100%;
+    padding: 13px;
+    margin: 30px 0 0 0;
+    border-radius: 5px;
+    color: $darkPurple;
+    transition: all 0.1s ease-in-out;
+}
+
+.button-search:hover{
+    background-color: $black;
+    color: $almostWhite;
+    cursor: pointer;
+}
+
+.div-button-add{
+    width:80%;
+    margin: 0 auto;
+}
+
+.button-add{
+    background-color: $black;
+    font-size: 16px;
+    font-weight: 400;
+    border:none;
+    margin: 30px 0 0 0;
+    width: 100%;
+    padding: 13px;
+    border-radius: 5px;
+    color: $almostWhite;
+    transition: all 0.1s ease-in-out;
+}
+
+.button-add:hover{
+    background-color: rgb(250,250,250);
+    color: $black;
+    border: $black solid 1px;
+    cursor: pointer;
+}
+
+#success-add{
+    background-color: transparent;
+    font-weight: 500;
+    color: $black;
+    border: none;
+    pointer-events: none;
+}
+
+.svg-add{
+    width: 25px;
+    padding: 0 0 0 5px;
+    position: relative;
+    top: 3px;
+}
+
+.errmsgAdd{
+    font-weight: 400;
+    font-size: 14px;
+    text-align:start;
+    width: 100%;
+    padding: 10px;
+    color: $brightRed;
+    background-color: $transparentRed;
+    border-radius: 5px;
+    margin: 0 auto 20px auto;  
+}
+
+.Chat-contact-add {
+    width: 90%;
+    padding: 50px 1rem 0 1rem;
+    display: flex;
+    margin: 0 auto;
+    h4,
+    h5 {
+        margin: 0;
+    }
+    h4 {
+        font-weight: 500;
+    }
+    h5 {
+        font-weight: 400;
+        margin-top: 0.5rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    &__logo,
+    &__time {
+        width: 3.5rem;
+    }
+    &__data {
+        width: calc(100% - 7rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
+        padding: 0rem 0.75rem
+    }
+    &__logo {
+        img {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+}

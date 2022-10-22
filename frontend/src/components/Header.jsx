@@ -32,6 +32,7 @@ export const Header = ({ data }) => {
         <ul>
           <Link to="/contacts"><li>Ver Contactos</li></Link>
           <Link to="/config"><li>Configuración</li></Link>
+          <Link to="/"><li>Cerrar sesión</li></Link>
         </ul>
       </div>
       <div className="header__search" style={ searchShow ?{ 'display': 'block', 'opacity': 1 } :  { 'display': 'none', 'opacity': 0 }}>

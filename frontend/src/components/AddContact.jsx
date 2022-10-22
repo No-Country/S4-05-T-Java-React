@@ -47,15 +47,19 @@ function AddContact() {
 
       }
 
-      const addContactButton = () => {
+      const addContactButton = async() => {
 
         let userLogeado = localStorage.getItem('id')
 
-        let succesContact = addContact(userLogeado, userFound.username);
+        let succesContact = await addContact(userLogeado, userFound.username);
 
-        if(succesContact){
+        console.log(succesContact);
+
+        if(succesContact && succesContact.userId){
             console.log('creado con exito')
             setSuccess(true);
+        }else{
+            setErrMsgUser('Ya existe el contacto');
         }
       }
 

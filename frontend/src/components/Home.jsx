@@ -13,6 +13,8 @@ export const Home = () => {
 
     const [users, setUsers] = useState([])
 
+    const imagen = require.context('./../img', true);
+
     useEffect(() => {
         (async () => {
             const id = localStorage.getItem('id')
@@ -135,7 +137,9 @@ export const Home = () => {
             <div className='home'>
                 {users.length === 0
                 ?
-                    <h3>No tienes ningun chat para mostrar</h3>
+                <div className="selectContacts__loading">
+                <img src={imagen("./loading.gif")} alt=""/>
+            </div>
                 :
                     users.map( item => (
                         <ChatContact item={item} key={item.id}/>

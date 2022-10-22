@@ -9,11 +9,11 @@ function ReciveMsj(props) {
 
     const [sender, setSender] = useState("")
 
-    for(let i = 0; i < chatContacts.length; i++){
+    /*for(let i = 0; i < chatContacts.length; i++){
         if(props.sender === chatContacts[i].id){
             setSender(chatContacts[i].username)
         }
-    }
+    }*/
 
     // useEffect(() => {
 

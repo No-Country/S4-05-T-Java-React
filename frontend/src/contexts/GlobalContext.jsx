@@ -106,7 +106,7 @@ function GlobalProvider({children}){
         for(let i = 0; i < contacts.length; i++){
             console.log("2°:", contacts[i].id, id.split('-')[1], i)
             if(contacts[i].id == id.split('-')[1]){
-                let con = {id: contacts[i].id, name: contacts[i].name, img: contacts[i].img}
+                let con = {id: contacts[i].id, name: contacts[i].name, picture: contacts[i].picture}
                 aux.push(con)
                 console.log(aux);
                 div.style.backgroundColor = "#EBEEFF"
@@ -212,7 +212,8 @@ function GlobalProvider({children}){
 
     const createChat = async (selcted) => {
         let type
-        let us = [{userId: user.id}]
+        const idUserLoged = localStorage.getItem("id")
+        let us = [{userId: idUserLoged}]
         let body
             
         if(selected.length > 1){
@@ -253,9 +254,10 @@ function GlobalProvider({children}){
             response.json().then((data) => {
                 console.log(data);
                 setChatId(data.id)
-                navigate('/chat:' + data.id.toString())
+                navigate('/chat/' + data.id.toString())
             }).catch((err) => {
                 console.log(err);
+                setErrMsg("Ya existe un chat")
             }) 
         });
 
@@ -415,7 +417,7 @@ function GlobalProvider({children}){
 
             const url = "https://chat-palomo.herokuapp.com/users/" + id + "/add/" + contact
 
-            await fetch(url, {
+            const resp = await fetch(url, {
                 method: "POST",
                 modo: "cors",
                 headers: {
@@ -425,7 +427,9 @@ function GlobalProvider({children}){
                 }
             });
 
-            return true;
+            const data = await resp.json()
+
+            return data;
 
         } catch (error) {
             setErrMsgUser('Algo ha salido mal')

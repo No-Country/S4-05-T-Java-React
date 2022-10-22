@@ -23,7 +23,7 @@ function App() {
               <Route path="/registration" element={ <Register/> } />
               <Route path="/contacts" element={<Contacts/>} />
               <Route path="/home" element={ <Home />} />
-              <Route path="/chat:id" element={<Chat />} />
+              <Route path="/chat/:id" element={<Chat />} />
               <Route path="/perfil" element={ <Perfil /> } />
               <Route path="/config" element={ <Config /> } />
               <Route path="/selectContacts" element={ <SelectContacts />} />

@@ -97,7 +97,7 @@ function Register() {
                                         email: email,
                                         name: nameLastName,
                                         password: pwd,
-                                        picture: "/profileDefaultPicture.png",
+                                        picture: "https://pbs.twimg.com/profile_images/1301576577076146176/dvHdYC6b_400x400.jpg",
                                         repeatPassword: matchPwd,
                                         username: user,
                                         description: "Sin descripción"

@@ -9,6 +9,8 @@ import SendMsj from "./SendMsj";
 import SockJS from "sockjs-client";
 import Stomp from "webstomp-client";
 
+const imagen = require.context('./../img', true)
+
 function Chat() {
 
     const { id } = useParams()
@@ -74,7 +76,27 @@ function Chat() {
             const idUserLocal = localStorage.getItem('id')    
             const data = await getMessages(id)
             console.log(data);
-            setChatLog(data)
+            let prev = ""
+            let auxLog
+
+            for(let i = 0; i < data.length; i++){
+                auxLog = data.sort(((a, b) => b.timestamp - a.timestamp))
+                auxLog[i].first = true
+
+                // console.log(i, prev, auxLog[i].userSenderId);
+                if(prev === ""){
+                    prev = auxLog[i].userSenderId
+                    continue
+                }
+
+                if(prev === auxLog[i].userSenderId){
+                    auxLog[i-1].first = false
+                } 
+                
+                prev = auxLog[i].userSenderId
+                
+            }
+            setChatLog(auxLog)
             setIdUser(idUserLocal)
 
             const chatResponse = await getChat(id)
@@ -159,7 +181,6 @@ function Chat() {
       
     }
 
-
     useEffect(() => {
         connect()
     }, [])
@@ -173,7 +194,7 @@ function Chat() {
             
             {<div className="chat__msjs">
                 {chatLog && chatLog.map((m) => {
-                   
+                    
                     return(
                         <div className="chat__div">
                             {Number(m.userSenderId) === Number(idUser)
@@ -199,6 +220,8 @@ function Chat() {
             </div>}
             
             <InputChat sendMessage={send}/>
+
+            <div className="chat__img"></div>
         </div>
     )
 }

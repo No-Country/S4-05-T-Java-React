@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -12,66 +13,17 @@ function GlobalProvider({children}){
     const [selected, setSelected] = useState([])
 
     const [contacts, setContacts] = useState()
-        // {
-        //     id: 1,
-        //     name: "A",
-        //     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        //     img: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg"
-        // },
-        // {
-        //     id: 2,
-        //     name: "B",
-        //     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        //     img: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg"
-        // },
-        // {
-        //     id: 3,
-        //     name: "C",
-        //     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        //     img: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg"
-        // },
-        // {
-        //     id: 4,
-        //     name: "D",
-        //     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        //     img: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg"
-        // },
-        // {
-        //     id: 5,
-        //     name: "E",
-        //     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        //     img: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg"
-        // },
-        // {
-        //     id: 6,
-        //     name: "F",
-        //     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        //     img: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg"
-        // },
-        // {
-        //     id: 7,
-        //     name: "G",
-        //     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        //     img: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg"
-        // },
-        // {
-        //     id: 8,
-        //     name: "H",
-        //     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        //     img: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg"
-        // },
-        // {
-        //     id: 9,
-        //     name: "I",
-        //     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        //     img: "https://1.bp.blogspot.com/-JREhSKN8sMM/VmH2B-jmFXI/AAAAAAAAIzg/ScNtA185M88/s1600/02273%2Bpaisajes01.jpg"
-        // },        
+        
     const [contactsChat, setContactsChat] = useState([])
 
     const [chats, setChats] = useState([])
 
     const [chatId, setChatId] = useState()
-    
+
+    useEffect(() => {
+        
+    })
+
     const select = (id) => {
         let aux = [...selected]
 
@@ -98,7 +50,7 @@ function GlobalProvider({children}){
                 check.innerHTML = ""
                 setTimeout(() => {
                     setSelected(aux)
-                }, 300);                
+                }, 300);
                 return
             }
         }
@@ -129,7 +81,7 @@ function GlobalProvider({children}){
                 "Content-type": "application/json; charset=UTF-8",
                 "Access-Control-Allow-Origin": "*",
                 "Accept": "*/*"
-            }        
+            }
         })
 
         const data = await resp.json()
@@ -169,10 +121,6 @@ function GlobalProvider({children}){
 
         return user*/
     }
-    
-    // if (user.id === 0) { 
-    //     getUserData(47);
-    // }
 
     const getContacts = async (id) => {
         console.log(id);
@@ -185,7 +133,7 @@ function GlobalProvider({children}){
                 "Content-type": "application/json; charset=UTF-8",
                 "Access-Control-Allow-Origin": "*",
                 "Accept": "*/*"
-            }        
+            }
         })
         /*.then((response) => { 
             response.json()
@@ -215,17 +163,17 @@ function GlobalProvider({children}){
         const idUserLoged = localStorage.getItem("id")
         let us = [{userId: idUserLoged}]
         let body
-            
+
         if(selected.length > 1){
             type = "group"
             for(let i = 0; i < selected.length; i++){
                 us.push(
                     {
                         userId: selected[i].id
-                    }        
+                    }
                 )
             }
-            
+
             body = {
                 name: "string",
                 users: us
@@ -238,7 +186,7 @@ function GlobalProvider({children}){
             }
         }
 
-        const url = "https://chat-palomo.herokuapp.com/chat/" + type        
+        const url = "https://chat-palomo.herokuapp.com/chat/" + type
 
         await fetch(url, {
             method: "POST",
@@ -248,9 +196,9 @@ function GlobalProvider({children}){
                 "Access-Control-Allow-Origin": "*",
                 "Accept": "*/*"
             },
-            body: JSON.stringify(body)        
+            body: JSON.stringify(body)
         })
-        .then((response) => { 
+        .then((response) => {
             response.json().then((data) => {
                 console.log(data);
                 setChatId(data.id)
@@ -265,7 +213,9 @@ function GlobalProvider({children}){
 
     const [errMsg, setErrMsg] = useState('');
 
-    const loginHandle = async (pwd, user) => { 
+    const loginHandle = async (pwd, user) => {
+        let ok = false
+
         try {
         const response =  await fetch("https://chat-palomo.herokuapp.com/auth/login", {
             method: "POST",
@@ -278,9 +228,9 @@ function GlobalProvider({children}){
                 password: pwd,
                 usernameOrEmail: user
             })
-        }) 
-        .then((response) => { 
-            
+        })
+        .then((response) => {
+
             if (response.status == 404) {
                 console.log('soy el error 404')
                 setErrMsg('No hubo respuesta del servidor');
@@ -292,7 +242,9 @@ function GlobalProvider({children}){
             } else if (response.status == 401) {
                 console.log('soy el error 401')
                 setErrMsg('Sin autorización')
-                return;
+            } else if (response.status == 200){
+                console.log('respuesta ok')
+                ok = true
             } else {
                 console.log('soy el error')
                 setErrMsg('Ha ocurrido un error');
@@ -302,14 +254,16 @@ function GlobalProvider({children}){
             
         .then(async (data) => {
                 console.log(data);
-                setUser(getUserData(data.userId));
-                getContacts(data.userId)
-                getChats(data.userId)
-                navigate("/home");
-                localStorage.setItem("id",data.userId )
+                if(ok){
+                    setUser(getUserData(data.userId));
+                    getContacts(data.userId)
+                    getChats(data.userId)
+                    navigate("/home");
+                    localStorage.setItem("id",data.userId )
+                }
             }).catch((err) => {
                 console.log(err);
-            }) 
+            })
         });
 
         /* console.log(token); */
@@ -345,9 +299,9 @@ function GlobalProvider({children}){
                 "Content-type": "application/json; charset=UTF-8",
                 "Access-Control-Allow-Origin": "*",
                 "Accept": "*/*"
-            }        
+            }
         })
-        .then((response) => { 
+        .then((response) => {
             response.json()
                 .then((data) => {
                     console.log(data);
@@ -355,38 +309,45 @@ function GlobalProvider({children}){
                 })
                     .catch((err) => {
                         console.log(err);
-                    }) 
+                    })
         });
 
     }
 
-    const getChatContacts = (id) => {
+    const getChatContacts = async (id) => {
 
         const url = "https://chat-palomo.herokuapp.com/chat/" + id.toString()
 
-        fetch(url, {
+        const resp = await fetch(url, {
             method: "GET",
             modo: "cors",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
                 "Access-Control-Allow-Origin": "*",
                 "Accept": "*/*"
-            }        
+            }
         })
-        .then((response) => { 
-            response.json()
-                .then((data) => {
-                    console.log(data);
-                        let us = []
-                        for(let i = 0; i < data.users.length; i++){
-                            us.push(getUserData(data.users.userId))
-                        }
-                    setContactsChat(us)
-                })
-                    .catch((err) => {
-                        console.log(err);
-                    }) 
-        });       
+        // .then((response) => {
+        //     response.json()
+        //         .then((data) => {
+        //             console.log(data);
+        //         })
+        //             .catch((err) => {
+        //                 console.log(err);
+        //             })
+        // });
+
+        const data = await resp.json()
+        console.log(data);
+        let us = []
+
+        for(let i = 0; i < data.users.length; i++){
+            console.log(getUserData(data.users[i].userId));
+            if(getUserData(data.users[i].userId) !== user.id){
+                us.push(getUserData(data.users.userId))
+            }
+        }
+        setContactsChat(us)
     }
 
     const getChats = async (id) => {
@@ -401,7 +362,7 @@ function GlobalProvider({children}){
                 "Content-type": "application/json; charset=UTF-8",
                 "Access-Control-Allow-Origin": "*",
                 "Accept": "*/*"
-            }        
+            }
         })
        const data =  await resp.json()
 

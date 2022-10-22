@@ -2,14 +2,13 @@ import React, { useState } from 'react'
 import { ButtonChat } from './ButtonChat'
 import { ChatContact } from './ChatContact'
 import {Header} from './Header'
-import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { GlobalContext } from '../contexts/GlobalContext'
 import { useEffect } from 'react'
 
 export const Home = () => {
 
-    const {getChats, chats, getUserData} = useContext(GlobalContext)
+    const {getChats, getUserData} = useContext(GlobalContext)
 
     const [users, setUsers] = useState(null)
 
@@ -54,6 +53,7 @@ export const Home = () => {
                 ?
                 <div className="selectContacts__loading">
                 <img src={imagen("./loading.gif")} alt=""/>
+                <div className='home__img'></div>
             </div>
                 : users.length === 0 ?
                 <h3>No tienes ningun chat para mostrar</h3>
@@ -62,6 +62,7 @@ export const Home = () => {
                         <ChatContact item={item} key={item.id}/>
                     ))
                 }
+                <div className='home__img'></div>
                 <ButtonChat/>
             </div>
         </>

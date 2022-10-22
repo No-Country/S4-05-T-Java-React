@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useEffect } from 'react'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { GlobalContext } from '../contexts/GlobalContext'
@@ -7,12 +8,19 @@ export const ChatContact = ({ item }) => {
 
   const navigate = useNavigate()
 
-  const {getChatContacts} = useContext(GlobalContext)
+  const {getChatContacts, contactsChat, getUserData} = useContext(GlobalContext)
+
+  const [contactGeted, setContactGeted] = useState(false)
+  const [contact, setContact] = useState({})
 
   const chat = (id) => {
     getChatContacts(id)
     navigate("/chat/" + id.toString())
   }
+
+  useEffect(() => {
+      console.log(contact);
+  }, [contact])
 
   return (
     <div className="Chat-contact" onClick={() => chat(item.chatId)}>

@@ -29,7 +29,7 @@ function App() {
               <Route path="/selectContacts" element={ <SelectContacts />} />
               <Route path="/newGroup" element={""} />
               <Route path="/addContact" element={<AddContact/>} />
-              <Route path="/profileContact:id" element={<ProfileContact/>} />
+              <Route path="/profileContact/:id" element={<ProfileContact/>} />
             </Routes>
         </div>
       </GlobalProvider>

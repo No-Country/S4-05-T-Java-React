@@ -4,15 +4,26 @@
     flex-direction: column;
     width: 100%;
     height: 100vh;
+    max-height: 100vh;
     background-color: $almostWhite;
-    
+    overflow: hidden;
+
+    .header-back {
+        position: fixed;
+        top: 0px;
+        z-index: 11;
+    }
 
     &__msjs {
+        margin-top: 4.6rem;
+        padding-top: 0.2rem;
+        padding-bottom: 0.2rem;
+        padding-right: 2rem;
         display: flex;
         flex-direction:column-reverse;
         width: 100%;
-        height: calc(100vh - 4rem - 3rem);
-        overflow: scroll;        
+        height: calc(100vh - 4.6rem - 4rem);
+        overflow: scroll;    
     }
 
     &__div{
@@ -23,9 +34,9 @@
 
     &__img {
         width: 100vw;
-        height: calc(100vh - 4rem);
+        height: calc(100vh - 4.6rem - 57px);
         background-image: url("./../../img/Best-Nature-Full-HD-Wallpapers31.jpg");
-        position: absolute;
-        top: 4rem;
+        position: fixed;
+        top: 4.6rem;
     }
 }

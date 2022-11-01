@@ -20,7 +20,7 @@
 
 An instant messaging application made as a project by Selected 4 of NoCountry to promote the development of technical and soft skills of JR profiles, teamwork, acquisition of tools required in today's corporations.
 
-![screenshot](https://i.ibb.co/26rycbf/Palomo-Chat.gif)
+![screenshot](/frontend/public/Palomo-Chat.gif)
 
 
 ## Built With

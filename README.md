@@ -11,15 +11,17 @@
 
 
 <p align="center">
-  <a href="https://github.com/No-Country/S4-05-T-Java-React">Explore the docs</a>
+  <a href="https://github.com/No-Country/S4-05-T-Java-React">Explore the docs</a> - 
   <a href="https://proyecto-react-ashen.vercel.app/">View a demo</a>
 </p>
 
-![screenshot](https://i.ibb.co/g6BkVtv/Palomo-chat.gif)
 
 ## About The Project
 
 An instant messaging application made as a project by Selected 4 of NoCountry to promote the development of technical and soft skills of JR profiles, teamwork, acquisition of tools required in today's corporations.
+
+![screenshot](https://i.ibb.co/26rycbf/Palomo-Chat.gif)
+
 
 ## Built With
 ### Desing

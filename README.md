@@ -41,7 +41,7 @@ An instant messaging application made as a project by Selected 4 of NoCountry to
 
 ## Team
 
-###Frontend
+### Frontend
 - #### Sara Valentina Latyn <a href="https://www.linkedin.com/in/valentina-latyn/" target="blank">![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)</a> <a href="https://github.com/saravalentinal" target="blank">![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)</a>
 - #### Leonardo Koryl <a href="https://www.linkedin.com/in/leonardo-koryl-4a407724/" target="blank">![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)</a> <a href="https://github.com/Leonardo-JK" target="blank">![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)</a>
 - #### Oswaldo Naupa <a href="https://www.linkedin.com/in/oswaldo-naupa-laura/" target="blank">![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)</a> <a href="https://github.com/oswaldonaupa" target="blank">![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)</a>

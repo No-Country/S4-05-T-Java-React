@@ -12,7 +12,7 @@
 
 <p align="center">
   <a href="https://github.com/No-Country/S4-05-T-Java-React">Explore the docs</a> - 
-  <a href="https://proyecto-react-ashen.vercel.app/">View a demo</a>
+  <a href="https://palomochat.vercel.app/">View a demo</a>
 </p>
 
 

@@ -15,14 +15,14 @@
     }
 
     &__msjs {
-        margin-top: 4.6rem;
-        padding-top: 0.2rem;
+        margin-top: 0rem;
+        padding-top: 4.6rem;
         padding-bottom: 0.2rem;
         padding-right: 2rem;
         display: flex;
         flex-direction:column-reverse;
         width: 100%;
-        height: calc(100vh - 4.6rem - 4rem);
+        height: calc(100vh - 4.6rem);
         overflow: scroll;    
     }
 

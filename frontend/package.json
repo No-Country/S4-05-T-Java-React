@@ -18,8 +18,9 @@
     "webstomp-client": "^1.2.6"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts start .env.PROD",
+    "start:local": "react-scripts start .env.LOCAL",
+    "build": "react-scripts build .env.PROD",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

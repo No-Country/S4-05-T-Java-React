@@ -11,7 +11,7 @@ const Config = () => {
         (async () => {
             const id = localStorage.getItem('id')
           
-             await getUserDataLogin(id)
+             await getUserDataLogin()
                         
         })();
     }, [user])

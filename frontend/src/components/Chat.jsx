@@ -12,7 +12,8 @@ import Stomp from "webstomp-client";
 const imagen = require.context('./../img', true)
 
 function Chat() {
-
+    const url = process.env.REACT_APP_HOST_BACK
+    const { getToken, errMsg} = useContext(GlobalContext);
     const { id } = useParams()
 
     console.log(id);
@@ -24,13 +25,13 @@ function Chat() {
     const [userReceived, setUserReceived] = useState()
 
     const getMessages = async (id) => {
-        const response = await fetch(`https://chat-palomo.herokuapp.com/chat/${id}/message?page=0`,                        
+        const response = await fetch(`${url}/chat/${id}/message?page=0`,                        
             { 
                 method: "GET",
                 modo: "cors",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
-                    /* 'Authorization': token */
+                    'Authorization': "Bearer " + getToken()
                 }, 
             }
         );
@@ -40,13 +41,13 @@ function Chat() {
     }
 
     const getUser = async (id) => {
-        const response = await fetch(`https://chat-palomo.herokuapp.com/users/${id}`,                        
+        const response = await fetch(`${url}/users/${id}`,                        
             { 
                 method: "GET",
                 modo: "cors",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
-                    /* 'Authorization': token */
+                    'Authorization': "Bearer " + getToken()
                 }, 
             }
         );
@@ -56,13 +57,13 @@ function Chat() {
     }
 
     const getChat = async (id) => {
-        const response = await fetch(`https://chat-palomo.herokuapp.com/chat/${id}`,                        
+        const response = await fetch(`${url}/chat/${id}`,                        
             { 
                 method: "GET",
                 modo: "cors",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
-                    /* 'Authorization': token */
+                    'Authorization': "Bearer " + getToken()
                 }, 
             }
         );
@@ -75,6 +76,7 @@ function Chat() {
         (async () => {      
             const idUserLocal = localStorage.getItem('id')    
             const data = await getMessages(id)
+            console.log("idUserLocal: " + idUserLocal);
             console.log(data);
             let prev = ""
             let auxLog
@@ -108,6 +110,8 @@ function Chat() {
             const userReceivedResponse = await getUser(userReceivedFilter[0].userId)
 
             setUserReceived(userReceivedResponse)
+
+            console.log("userReceivedResponse: " +userReceivedResponse);
         })();
     }, [])
     
@@ -115,10 +119,9 @@ function Chat() {
     const [chatLog, setChatLog] = useState([
     ])    
 
-    console.log(userReceived);
     //sockets
     const connect = () => {
-        const socket = new SockJS("https://chat-palomo.herokuapp.com/ws");
+        const socket = new SockJS(url+"/ws");
         console.log("ayuda", socket);
         const stompClient = Stomp.over(socket);
         // comment the line below if you want to see debug messages
@@ -148,7 +151,7 @@ function Chat() {
 
         //const id = localStorage.getItem('id')
 
-        const socket = new SockJS("https://chat-palomo.herokuapp.com/ws");
+        const socket = new SockJS(url+"/ws");
         console.log("ayuda", socket);
         const stompClient = Stomp.over(socket);
         // comment the line below if you want to see debug messages

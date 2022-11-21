@@ -14,7 +14,7 @@ const Perfil = () => {
 
     useEffect(() => {
         (async () => {
-          
+            console.log(id)
             const dataUser = await getUserData(id);
             setUser(dataUser);
 

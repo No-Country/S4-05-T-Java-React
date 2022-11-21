@@ -29,7 +29,7 @@ export const Home = () => {
                         /*console.log('chat', chat);
                         console.log('id', id);*/
                         if(chat.userId !== Number(id)){
-                            console.log(chat);
+                            console.log(chat.userId);
                             const userData = await getUserData(chat.userId)
                             userData.chatId = user.id
                             console.log(userData);

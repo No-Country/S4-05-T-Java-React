@@ -7,8 +7,11 @@ export const GlobalContext = createContext();
 function GlobalProvider({children}){
 
     const navigate = useNavigate()
-
+    const url = process.env.REACT_APP_HOST_BACK
+    
     const [user, setUser] = useState("")
+
+    const [token, setToken] = useState("")
 
     const [selected, setSelected] = useState([])
 
@@ -20,9 +23,15 @@ function GlobalProvider({children}){
 
     const [chatId, setChatId] = useState()
 
+    const [host, setHost] = useState(url);
+
     useEffect(() => {
-        
-    })
+        if (!(token === "")){
+            getUserDataLogin()
+            getContacts();
+            getChats();
+        }
+    },[token])
 
     const select = (id) => {
         let aux = [...selected]
@@ -70,8 +79,8 @@ function GlobalProvider({children}){
         }
     }
 
-    const getUserDataLogin = async (id) => {
-        const url = "https://chat-palomo.herokuapp.com/users/" + id
+    const getUserDataLogin = async () => {
+        const url = host + "/users/my"
 
         const resp = await fetch(url, {
 
@@ -80,7 +89,8 @@ function GlobalProvider({children}){
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
                 "Access-Control-Allow-Origin": "*",
-                "Accept": "*/*"
+                "Accept": "*/*",
+                "Authorization": "Bearer " + token
             }
         })
 
@@ -92,7 +102,7 @@ function GlobalProvider({children}){
     
 
     const getUserData = async (id) => {
-        const url = "https://chat-palomo.herokuapp.com/users/" + id
+        const url = host +"/users/" + id
         let user
 
         const resp = await fetch(url, {
@@ -102,29 +112,17 @@ function GlobalProvider({children}){
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
                 "Access-Control-Allow-Origin": "*",
-                "Accept": "*/*"
+                "Accept": "*/*",
+                "Authorization": "Bearer " + token
             }        
         })
 
         const data = await resp.json()
         return data
-        /*.then((response) => { 
-            response.json()
-            .then((data) => {
-                console.log(data);
-                user = data
-            })
-            .catch((err) => {
-                console.log(err);
-            }) 
-        });
-
-        return user*/
     }
 
-    const getContacts = async (id) => {
-        console.log(id);
-        const url = "https://chat-palomo.herokuapp.com/users/" + id + "/contacts"
+    const getContacts = async () => {
+        const url = host + "/users/contacts"
 
         const resp = await fetch(url, {
             method: "GET",
@@ -132,19 +130,10 @@ function GlobalProvider({children}){
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
                 "Access-Control-Allow-Origin": "*",
-                "Accept": "*/*"
+                "Accept": "*/*",
+                "Authorization": "Bearer " + token
             }
         })
-        /*.then((response) => { 
-            response.json()
-                .then((data) => {
-                    console.log(data);
-                    setContacts(data)
-                })
-                    .catch((err) => {
-                        console.log(err);
-                    }) 
-        });*/
 
         const data = await resp.json()
         console.log(data);
@@ -152,11 +141,6 @@ function GlobalProvider({children}){
 
         return data
     }
-
-/*     if(contacts === undefined){
-        console.log("get");
-        getContacts(19)
-    }  */
 
     const createChat = async (selcted) => {
         let type
@@ -186,7 +170,7 @@ function GlobalProvider({children}){
             }
         }
 
-        const url = "https://chat-palomo.herokuapp.com/chat/" + type
+        const url = host + "/chat/" + type
 
         await fetch(url, {
             method: "POST",
@@ -194,7 +178,8 @@ function GlobalProvider({children}){
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
                 "Access-Control-Allow-Origin": "*",
-                "Accept": "*/*"
+                "Accept": "*/*",
+                "Authorization": "Bearer " + token
             },
             body: JSON.stringify(body)
         })
@@ -217,7 +202,7 @@ function GlobalProvider({children}){
         let ok = false
 
         try {
-        const response =  await fetch("https://chat-palomo.herokuapp.com/auth/login", {
+        const response =  await fetch(host + "/auth/login", {
             method: "POST",
             modo: "cors",
             headers: {
@@ -255,9 +240,7 @@ function GlobalProvider({children}){
         .then(async (data) => {
                 console.log(data);
                 if(ok){
-                    setUser(getUserData(data.userId));
-                    getContacts(data.userId)
-                    getChats(data.userId)
+                    setToken(data.token)
                     navigate("/home");
                     localStorage.setItem("id",data.userId )
                 }
@@ -265,13 +248,6 @@ function GlobalProvider({children}){
                 console.log(err);
             })
         });
-
-        /* console.log(token); */
-
-        /* const accessToken = response?.data?.accessToken;
-        const roles = response?.data?.roles;
-        setAuth({ user, pwd, roles, accessToken }); */
-        /* setSuccess(true); */
 
         } catch (err) {
 
@@ -290,7 +266,7 @@ function GlobalProvider({children}){
 
     const deleteContact = (username) => {
 
-        const url = "https://chat-palomo.herokuapp.com/users/" + user.id + "/remove/" + username
+        const url = host + "/users/contacts/remove/" + username
 
         fetch(url, {
             method: "DELETE",
@@ -298,7 +274,8 @@ function GlobalProvider({children}){
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
                 "Access-Control-Allow-Origin": "*",
-                "Accept": "*/*"
+                "Accept": "*/*",
+                "Authorization": "Bearer " + token
             }
         })
         .then((response) => {
@@ -316,7 +293,7 @@ function GlobalProvider({children}){
 
     const getChatContacts = async (id) => {
 
-        const url = "https://chat-palomo.herokuapp.com/chat/" + id.toString()
+        const url = host + "/chat/" + id
 
         const resp = await fetch(url, {
             method: "GET",
@@ -324,34 +301,27 @@ function GlobalProvider({children}){
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
                 "Access-Control-Allow-Origin": "*",
-                "Accept": "*/*"
+                "Accept": "*/*",
+                "Authorization": "Bearer " + token
             }
         })
-        // .then((response) => {
-        //     response.json()
-        //         .then((data) => {
-        //             console.log(data);
-        //         })
-        //             .catch((err) => {
-        //                 console.log(err);
-        //             })
-        // });
 
         const data = await resp.json()
         console.log(data);
         let us = []
 
         for(let i = 0; i < data.users.length; i++){
-            console.log(getUserData(data.users[i].userId));
-            if(getUserData(data.users[i].userId) !== user.id){
-                us.push(getUserData(data.users.userId))
+            console.log(data.users[i].userId)
+            let audata = getUserData(data.users[i].userId)
+            if(audata.userId !== user.id){
+                us.push(audata)
             }
         }
         setContactsChat(us)
     }
 
-    const getChats = async (id) => {
-        const url = "https://chat-palomo.herokuapp.com/chat?page=0&userId=" + id.toString()
+    const getChats = async () => {
+        const url = host + "/chat?page=0"
 
         let dataChats
 
@@ -361,7 +331,8 @@ function GlobalProvider({children}){
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
                 "Access-Control-Allow-Origin": "*",
-                "Accept": "*/*"
+                "Accept": "*/*",
+                "Authorization": "Bearer " + token
             }
         })
        const data =  await resp.json()
@@ -376,7 +347,7 @@ function GlobalProvider({children}){
 
         try {
 
-            const url = "https://chat-palomo.herokuapp.com/users/" + id + "/add/" + contact
+            const url = host + "/users/add/" + contact
 
             const resp = await fetch(url, {
                 method: "POST",
@@ -384,7 +355,8 @@ function GlobalProvider({children}){
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
                     "Access-Control-Allow-Origin": "*",
-                    "Accept": "*/*"
+                    "Accept": "*/*",
+                    "Authorization": "Bearer " + token
                 }
             });
 
@@ -404,7 +376,7 @@ function GlobalProvider({children}){
 
         try{
 
-            const url = "https://chat-palomo.herokuapp.com/users/username/" + username
+            const url = host + "/users/username/" + username
     
             const resp = await fetch(url, {
     
@@ -413,7 +385,8 @@ function GlobalProvider({children}){
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
                     "Access-Control-Allow-Origin": "*",
-                    "Accept": "*/*"
+                    "Accept": "*/*",
+                    "Authorization": "Bearer " + token
                 }       
             })
     
@@ -424,6 +397,15 @@ function GlobalProvider({children}){
             setErrMsgUser('Usuario no encontrado')
         }
 
+    }
+
+    const getToken = () => {
+
+        if(!(token == ""))
+            return token
+        else
+            setErrMsgUser('Usuario no logueado')
+        
     }
 
     return(
@@ -447,7 +429,8 @@ function GlobalProvider({children}){
             getUserDataLogin,
             addContact,
             setErrMsgUser,
-            getUserByName
+            getUserByName,
+            getToken
         }}>
             {children}
         </GlobalContext.Provider>
